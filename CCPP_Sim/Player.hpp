@@ -20,5 +20,5 @@ public:
         myColor = color;
         currentSpace = start;
     }
-}
+};
 #endif /* Player_hpp */

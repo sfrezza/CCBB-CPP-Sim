@@ -14,10 +14,10 @@
 
 class CircularRoute : public Route {
 public:
-    Route nextRoute;
+    Route *nextRoute;
     MagicButton myMagicButton;
     
-    CircularRoute(int length, Route next) : Route(length) {
+    CircularRoute(int length, Route *next) : Route(length) {
         nextRoute = next;
         for (int index=0; index < length; index++) {
             BlackSpace newBlackSpace = BlackSpace(this);
