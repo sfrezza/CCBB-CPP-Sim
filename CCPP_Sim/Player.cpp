@@ -1,12 +1,8 @@
 //
-//  main.swift
+//  Player.cpp
 //  CCPP_Sim
 //
 //  Created by Steve Frezza on 2/12/23.
 //
 
-import Foundation
-
-print("Hello, CCBB!")
-
-
+#include "Player.hpp"

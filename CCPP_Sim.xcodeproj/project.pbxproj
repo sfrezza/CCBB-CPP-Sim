@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		2AF0670E2999C44100D3F3CF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0670D2999C44100D3F3CF /* main.swift */; };
+		2AF067172999C4BD00D3F3CF /* Space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF067152999C4BD00D3F3CF /* Space.cpp */; };
+		2AF0671A2999C54500D3F3CF /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF067182999C54500D3F3CF /* Player.cpp */; };
+		2AF0671D2999C6DC00D3F3CF /* Route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0671B2999C6DC00D3F3CF /* Route.cpp */; };
+		2AF067232999D15800D3F3CF /* JumpSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF067212999D15800D3F3CF /* JumpSpace.cpp */; };
+		2AF067262999D3A500D3F3CF /* ColoredSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF067242999D3A500D3F3CF /* ColoredSpace.cpp */; };
+		2AF0672C2999D6ED00D3F3CF /* CircularRoute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0672A2999D6ED00D3F3CF /* CircularRoute.cpp */; };
+		2AF0672F2999D97800D3F3CF /* BlackSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0672D2999D97800D3F3CF /* BlackSpace.cpp */; };
+		2AF067322999E3FA00D3F3CF /* LinearRoute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF067302999E3FA00D3F3CF /* LinearRoute.cpp */; };
+		2AF067352999F41000D3F3CF /* WheelSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF067332999F41000D3F3CF /* WheelSpace.cpp */; };
+		2AF067382999F58600D3F3CF /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF067362999F58600D3F3CF /* Board.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +35,28 @@
 /* Begin PBXFileReference section */
 		2AF0670A2999C44100D3F3CF /* CCPP_Sim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CCPP_Sim; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF0670D2999C44100D3F3CF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		2AF067142999C4BC00D3F3CF /* CCPP_Sim-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCPP_Sim-Bridging-Header.h"; sourceTree = "<group>"; };
+		2AF067152999C4BD00D3F3CF /* Space.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Space.cpp; sourceTree = "<group>"; };
+		2AF067162999C4BD00D3F3CF /* Space.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Space.hpp; sourceTree = "<group>"; };
+		2AF067182999C54500D3F3CF /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		2AF067192999C54500D3F3CF /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		2AF0671B2999C6DC00D3F3CF /* Route.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Route.cpp; sourceTree = "<group>"; };
+		2AF0671C2999C6DC00D3F3CF /* Route.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Route.hpp; sourceTree = "<group>"; };
+		2AF067212999D15800D3F3CF /* JumpSpace.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JumpSpace.cpp; sourceTree = "<group>"; };
+		2AF067222999D15800D3F3CF /* JumpSpace.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = JumpSpace.hpp; sourceTree = "<group>"; };
+		2AF067242999D3A500D3F3CF /* ColoredSpace.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColoredSpace.cpp; sourceTree = "<group>"; };
+		2AF067252999D3A500D3F3CF /* ColoredSpace.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ColoredSpace.hpp; sourceTree = "<group>"; };
+		2AF067282999D66000D3F3CF /* MagicButton.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MagicButton.hpp; sourceTree = "<group>"; };
+		2AF0672A2999D6ED00D3F3CF /* CircularRoute.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CircularRoute.cpp; sourceTree = "<group>"; };
+		2AF0672B2999D6ED00D3F3CF /* CircularRoute.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CircularRoute.hpp; sourceTree = "<group>"; };
+		2AF0672D2999D97800D3F3CF /* BlackSpace.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlackSpace.cpp; sourceTree = "<group>"; };
+		2AF0672E2999D97800D3F3CF /* BlackSpace.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BlackSpace.hpp; sourceTree = "<group>"; };
+		2AF067302999E3FA00D3F3CF /* LinearRoute.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LinearRoute.cpp; sourceTree = "<group>"; };
+		2AF067312999E3FA00D3F3CF /* LinearRoute.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinearRoute.hpp; sourceTree = "<group>"; };
+		2AF067332999F41000D3F3CF /* WheelSpace.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WheelSpace.cpp; sourceTree = "<group>"; };
+		2AF067342999F41000D3F3CF /* WheelSpace.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WheelSpace.hpp; sourceTree = "<group>"; };
+		2AF067362999F58600D3F3CF /* Board.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Board.cpp; sourceTree = "<group>"; };
+		2AF067372999F58600D3F3CF /* Board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Board.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +90,28 @@
 			isa = PBXGroup;
 			children = (
 				2AF0670D2999C44100D3F3CF /* main.swift */,
+				2AF067212999D15800D3F3CF /* JumpSpace.cpp */,
+				2AF067222999D15800D3F3CF /* JumpSpace.hpp */,
+				2AF067152999C4BD00D3F3CF /* Space.cpp */,
+				2AF067162999C4BD00D3F3CF /* Space.hpp */,
+				2AF067142999C4BC00D3F3CF /* CCPP_Sim-Bridging-Header.h */,
+				2AF067182999C54500D3F3CF /* Player.cpp */,
+				2AF067192999C54500D3F3CF /* Player.hpp */,
+				2AF0671B2999C6DC00D3F3CF /* Route.cpp */,
+				2AF0671C2999C6DC00D3F3CF /* Route.hpp */,
+				2AF067242999D3A500D3F3CF /* ColoredSpace.cpp */,
+				2AF067252999D3A500D3F3CF /* ColoredSpace.hpp */,
+				2AF0672D2999D97800D3F3CF /* BlackSpace.cpp */,
+				2AF067302999E3FA00D3F3CF /* LinearRoute.cpp */,
+				2AF067312999E3FA00D3F3CF /* LinearRoute.hpp */,
+				2AF0672E2999D97800D3F3CF /* BlackSpace.hpp */,
+				2AF0672A2999D6ED00D3F3CF /* CircularRoute.cpp */,
+				2AF0672B2999D6ED00D3F3CF /* CircularRoute.hpp */,
+				2AF067282999D66000D3F3CF /* MagicButton.hpp */,
+				2AF067332999F41000D3F3CF /* WheelSpace.cpp */,
+				2AF067342999F41000D3F3CF /* WheelSpace.hpp */,
+				2AF067362999F58600D3F3CF /* Board.cpp */,
+				2AF067372999F58600D3F3CF /* Board.hpp */,
 			);
 			path = CCPP_Sim;
 			sourceTree = "<group>";
@@ -94,6 +148,7 @@
 				TargetAttributes = {
 					2AF067092999C44100D3F3CF = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -120,7 +175,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AF067172999C4BD00D3F3CF /* Space.cpp in Sources */,
+				2AF067322999E3FA00D3F3CF /* LinearRoute.cpp in Sources */,
+				2AF067232999D15800D3F3CF /* JumpSpace.cpp in Sources */,
+				2AF0672F2999D97800D3F3CF /* BlackSpace.cpp in Sources */,
+				2AF0671D2999C6DC00D3F3CF /* Route.cpp in Sources */,
+				2AF067262999D3A500D3F3CF /* ColoredSpace.cpp in Sources */,
+				2AF067352999F41000D3F3CF /* WheelSpace.cpp in Sources */,
+				2AF067382999F58600D3F3CF /* Board.cpp in Sources */,
 				2AF0670E2999C44100D3F3CF /* main.swift in Sources */,
+				2AF0672C2999D6ED00D3F3CF /* CircularRoute.cpp in Sources */,
+				2AF0671A2999C54500D3F3CF /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,8 +308,16 @@
 		2AF067122999C44100D3F3CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CCPP_Sim/CCPP_Sim-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -252,8 +325,15 @@
 		2AF067132999C44100D3F3CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CCPP_Sim/CCPP_Sim-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
