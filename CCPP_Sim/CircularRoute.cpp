@@ -6,9 +6,6 @@
 //
 
 #include "CircularRoute.hpp"
-
-
-
     
 Space CircularRoute::movePlayer(Player player, int noSpaces) {
     SpaceTuple spaceTuple = Route::startPlayerMove(player, 0);

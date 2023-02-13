@@ -7,8 +7,6 @@
 
 #include "BlackSpace.hpp"
 
-
-
 Space BlackSpace::endMovementOn(Player player) {
     std::string buttonColor = myRoute.myMagicButton.buttonColor;
     

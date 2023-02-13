@@ -8,7 +8,6 @@
 #ifndef Player_hpp
 #define Player_hpp
 
-#include <stdio.h>
 #include <string>
 #include "Space.hpp"
 
