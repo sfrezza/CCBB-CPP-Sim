@@ -14,9 +14,9 @@
 class Player {
 public:
     std::string myColor;
-    Space currentSpace;
+    Space *currentSpace;
     
-    Player (std::string color, Space start) {
+    Player (std::string color, Space *start) {
         myColor = color;
         currentSpace = start;
     }

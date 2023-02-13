@@ -8,8 +8,7 @@
 #include "Route.hpp"
 #include "Space.hpp"
 
-SpaceTuple Route::getCurrentSpace(Player player) {
-
+SpaceTuple Route::getCurrentSpace(Player *player) {
     if (startSpace.currentPlayers.contains(player)) {
         return SpaceTuple(&startSpace, -1);
     }
@@ -32,7 +31,7 @@ Space Route::movePlayer (Player player, int noSpaces) {
 }
 */
 
-SpaceTuple Route::startPlayerMove(Player player, int noSpaces) {
+SpaceTuple Route::startPlayerMove(Player *player, int noSpaces) {
     SpaceTuple spaceTuple = getCurrentSpace(player);
     return spaceTuple;
 }

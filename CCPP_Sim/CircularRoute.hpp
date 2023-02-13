@@ -24,6 +24,6 @@ public:
             path.push_back(&newBlackSpace);
         }
     }
-    Space movePlayer(Player player, int noSpaces); // override of parent func
+    Space* movePlayer(Player *player, int noSpaces) override; 
 };
 #endif /* CircularRoute_hpp */

@@ -26,10 +26,10 @@ public:
         startSpace.myRoute = this;
     }
     
-    SpaceTuple getCurrentSpace(Player player);
-    virtual Space movePlayer (Player player, int noSpaces);
+    SpaceTuple getCurrentSpace(Player *player);
+    virtual Space* movePlayer (Player *player, int noSpaces);
     
-    SpaceTuple startPlayerMove(Player player, int noSpaces);
+    SpaceTuple startPlayerMove(Player *player, int noSpaces);
 };
 
 #endif /* Route_hpp */

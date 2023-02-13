@@ -31,13 +31,13 @@ struct SpaceTuple {
 class Space {
 public:
     std::string myColor;
-    std::set<Player> currentPlayers = {};
+    std::set<Player*> currentPlayers = {};
     Route *myRoute;
     
 public:
     Space(std::string color);
-    virtual Space endMovementOn(Player player);
-    void startMovement(Player player);
+    virtual Space* endMovementOn(Player *player);
+    void startMovement(Player *player);
 };
 
 #endif /* Space_hpp */

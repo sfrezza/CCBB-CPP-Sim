@@ -15,10 +15,10 @@
 
 class Board {
 public:
-    LinearRoute *route3 = LinearRoute(16);
-    CircularRoute *route2 = CircularRoute(18, &route3);
-    CircularRoute *route1 = CircularRoute(26, &route2);
-    vector<Player> players = {};
+    LinearRoute *route3 = new LinearRoute(16);
+    CircularRoute *route2 = new CircularRoute(18, &route3);
+    CircularRoute *route1 = new CircularRoute(26, &route2);
+    std::vector<Player*> players = {};
     
     Board() {
         initializeLinearRoute(route3);
@@ -30,7 +30,7 @@ public:
     
 private:
     int getPlayerIndex(std::string color);
-    void Player getPlayerFromColor(std::string color);
+    Player* getPlayerFromColor(std::string color);
     void initializeLinearRoute(Route* target);
     void initializeCircularRoute2();
     void initializeCircularRoute1();
