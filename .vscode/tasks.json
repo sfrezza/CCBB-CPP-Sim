@@ -22,7 +22,6 @@
                 "-fcolor-diagnostics",
                 "-fansi-escape-codes",
                 "--include-directory=${workspaceFolder}/build/_deps/googletest-src/googletest/include",
-                "-Wc++11-extensions",
                 "--include-directory=${workspaceFolder}/src",
                 "-std=c++17", 
                 "-g",
