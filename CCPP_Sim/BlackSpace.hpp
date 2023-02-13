@@ -16,7 +16,7 @@ public:
     BlackSpace(CircularRoute *route) : Space("Black") {
         myRoute = route;
     }
-    Space* endMovementOn(Player player) override;
+    Space* endMovementOn(Player *player) override;
 };
 
 #endif /* Blac*kSpace_hpp */

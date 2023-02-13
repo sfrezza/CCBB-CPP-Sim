@@ -17,6 +17,6 @@ public:
         jumpTo = jumpTarget->startSpace;
         myRoute = owningRoute;
     }
-    Space endMovementOn(Player player) override;
+    Space *endMovementOn(Player *player) override;
 };
 #endif /* WheelSpace_hpp */

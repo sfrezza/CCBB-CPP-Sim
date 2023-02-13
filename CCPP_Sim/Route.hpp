@@ -13,7 +13,7 @@
 
 class Route {
 public:
-    Space startSpace = Space("Start");
+    Space *startSpace = new Space("Start");
     std::vector<Space*> path = {};
 
 public:
@@ -23,7 +23,7 @@ public:
             newSpace.myRoute = this;
             path.push_back(&newSpace);
         }
-        startSpace.myRoute = this;
+        startSpace->myRoute = this;
     }
     
     SpaceTuple getCurrentSpace(Player *player);

@@ -14,9 +14,9 @@
 class JumpSpace : public Space {
 public:
     Space jumpTo;
-    JumpSpace():Space("Jump") {}; //force default construction behavior
+    JumpSpace() : Space("Jump") {}; //force default construction behavior
     JumpSpace(Route *jumpTarget, Route *owningRoute);
     
-    Space endMovementOn(Player player) override;
+    Space* endMovementOn(Player *player) override;
 };
 #endif /* JumpSpace_hpp */

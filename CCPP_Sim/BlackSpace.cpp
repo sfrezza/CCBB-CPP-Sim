@@ -7,7 +7,7 @@
 
 #include "BlackSpace.hpp"
 
-Space BlackSpace::endMovementOn(Player *player) {
+Space* BlackSpace::endMovementOn(Player *player) {
     CircularRoute *myCircRoute = (CircularRoute *)myRoute;  // Not sure why this is necessary...
     std::string buttonColor = myCircRoute->myMagicButton.buttonColor;
     

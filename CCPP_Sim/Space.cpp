@@ -6,17 +6,18 @@
 //
 
 #include "Space.hpp"
-    Space::Space(std::string color)
-    {
-        myColor = color;
-    }
-    
-    Space* Space::endMovementOn(Player *player) {
-        currentPlayers.insert(player);
-        player->currentSpace = this;
-        return this;
-    }
-    void startMovement(Player *player) {
-        currentPlayers.erase(player);
-    }
+Space::Space(std::string color)
+{
+    myColor = color;
 }
+    
+Space* Space::endMovementOn(Player *player) {
+    currentPlayers.insert(player);
+    player->currentSpace = this;
+    return this;
+}
+
+void Space::startMovement(Player *player) {
+    currentPlayers.erase(player);
+}
+

@@ -13,10 +13,10 @@
 
 class ColoredSpace : public Space {
 public:
-    ColoredSpace(std::string color, CircularRoute route) : Space(color) {
+    ColoredSpace(std::string color, Route *route) : Space(color) {
         myRoute = route;
     }
-    Space endMovementOn(Player player) override;
+    Space *endMovementOn(Player *player) override;
 };
 
 #endif /* ColoredSpace_hpp */
