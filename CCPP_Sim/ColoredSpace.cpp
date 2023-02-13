@@ -12,7 +12,7 @@ Space *ColoredSpace::endMovementOn(Player *player) {
     std::string myRoutesButtonColor = myCircRoute->myMagicButton.buttonColor;
 
     if (myColor == myRoutesButtonColor) { // Advance to the next route
-        return myCircRoute->nextRoute->startSpace.endMovementOn(player);
+        return myCircRoute->nextRoute->startSpace->endMovementOn(player);
     }
     else { // do nothing
         Space* super = (Space*)this; //force call to parent function

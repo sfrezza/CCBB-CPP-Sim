@@ -35,6 +35,7 @@ public:
     Route *myRoute;
     
 public:
+    Space(){myColor = "Unassigned";}
     Space(std::string color);
     virtual Space* endMovementOn(Player *player);
     void startMovement(Player *player);
