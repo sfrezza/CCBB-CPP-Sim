@@ -6,9 +6,16 @@
 //
 
 #include "WheelSpace.hpp"
+#include "Route.hpp"
+#include "Space.hpp"
 
-Space WheelSpace::endMovementOn(Player player) {
-    Space newEndSpace = jumpTo->endMovementOn(player);
+WheelSpace::WheelSpace(Route *jumpTarget, Route *owningRoute): Space("Jump") {
+    jumpTo = jumpTarget->startSpace;
+    myRoute = owningRoute;
+}
+
+Space* WheelSpace::endMovementOn(Player* player) {
+    Space* newEndSpace = jumpTo->endMovementOn(player);
     return newEndSpace;
 }
 

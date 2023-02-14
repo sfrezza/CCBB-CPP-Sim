@@ -8,15 +8,14 @@
 #ifndef WheelSpace_hpp
 #define WheelSpace_hpp
 
+class Route;
 #include "Space.hpp"
 class WheelSpace : public Space {
-public:
+private:
     Space *jumpTo;
-    
-    WheelSpace(Route *jumpTarget, Route *owningRoute): Space("Jump") {
-        jumpTo = jumpTarget->startSpace;
-        myRoute = owningRoute;
-    }
+
+public:
+    WheelSpace(Route *jumpTarget, Route *owningRoute);
     Space *endMovementOn(Player *player) override;
 };
 #endif /* WheelSpace_hpp */

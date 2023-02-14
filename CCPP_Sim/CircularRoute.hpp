@@ -11,6 +11,7 @@
 #include "Route.hpp"
 class MagicButton;
 class BlackSpace;
+
 class CircularRoute : public Route {
 public:
     Route *nextRoute;

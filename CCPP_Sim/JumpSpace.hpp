@@ -8,13 +8,15 @@
 #ifndef JumpSpace_hpp
 #define JumpSpace_hpp
 
-#include <stdio.h>
+class Route;
 #include "Space.hpp"
 
 class JumpSpace : public Space {
+private:
+    Space *jumpTo;
+
 public:
-    Space jumpTo;
-    JumpSpace() : Space("Jump") {}; //force default construction behavior
+    JumpSpace();
     JumpSpace(Route *jumpTarget, Route *owningRoute);
     
     Space* endMovementOn(Player *player) override;
