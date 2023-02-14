@@ -14,17 +14,6 @@
 
 class Player;
 class Route;
-struct SpaceTuple {
-    Space *space;
-    int index;
-    
-    SpaceTuple(){};
-    SpaceTuple(Space *s, int i)
-    {
-        space = s;
-        index = i;
-    }
-};
 
 class Space {
 public:
@@ -39,4 +28,15 @@ public:
     void startMovement(Player *player);
 };
 
+struct SpaceTuple {
+    Space *space;
+    int index;
+    
+    SpaceTuple(){};
+    SpaceTuple(Space *s, int i)
+    {
+        space = s;
+        index = i;
+    }
+};
 #endif /* Space_hpp */

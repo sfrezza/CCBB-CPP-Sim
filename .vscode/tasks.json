@@ -10,7 +10,7 @@
                 "-fansi-escape-codes",
                 "-std=c++17", 
                 "-g",
-                "${workspaceFolder}/*.cpp",
+                "${workspaceFolder}/*/*.cpp",
                 "-o",
                 "${workspaceFolder}/${fileBasenameNoExtension}"
             ],
