@@ -9,26 +9,21 @@
 #define Route_hpp
 
 #include <vector>
-#include "Space.hpp"
+
+class Space;
+class Player;
+struct SpaceTuple;
 
 class Route {
 public:
-    Space *startSpace = new Space("Start");
-    std::vector<Space*> path = {};
+    Space *startSpace;
+    std::vector<Space*> path;
 
 public:
-    Route(int length) {
-        for (int index =0; index < (length - 1); index++) {
-            Space newSpace = Space(std::string("Black"));
-            newSpace.myRoute = this;
-            path.push_back(&newSpace);
-        }
-        startSpace->myRoute = this;
-    }
-    
+    Route();
+    Route(int length);
     SpaceTuple getCurrentSpace(Player *player);
-    virtual Space* movePlayer (Player *player, int noSpaces);
-    
+    virtual Space* movePlayer(Player *player, int noSpaces);
     SpaceTuple startPlayerMove(Player *player, int noSpaces);
 };
 
