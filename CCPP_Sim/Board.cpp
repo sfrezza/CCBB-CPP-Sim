@@ -65,17 +65,17 @@ void Board::initializeCircularRoute2() {
     
     void Board::initializeCircularRoute1() {
         Route* super = (Route*)(route1);
-        super->path[3] = new ColoredSpace("Yellow", (Route*)route1);
-        super->path[5] = new ColoredSpace("Green", (Route*)route1);
-        super->path[7] = new ColoredSpace("Blue", (Route*)route1);
-        super->path[9] = new ColoredSpace("Red", (Route*)route1);
-        super->path[11] = new ColoredSpace("Yellow", (Route*)route1);
-        super->path[13] = new ColoredSpace("Green", (Route*)route1);
-        super->path[15] = new ColoredSpace("Blue", (Route*)route1);
-        super->path[17] = new ColoredSpace("Red", (Route*)route1);
-        super->path[19] = new ColoredSpace("Yellow", (Route*)route1);
-        super->path[21] = new ColoredSpace("Green", (Route*)route1);
-        super->path[23] = new ColoredSpace( "Blue", (Route*)route1);
-        super->path[25] = new ColoredSpace( "Red", (Route*)route1);
+        super->path[3] = new ColoredSpace("Yellow", route1);
+        super->path[5] = new ColoredSpace("Green", route1);
+        super->path[7] = new ColoredSpace("Blue", route1);
+        super->path[9] = new ColoredSpace("Red", route1);
+        super->path[11] = new ColoredSpace("Yellow", route1);
+        super->path[13] = new ColoredSpace("Green", route1);
+        super->path[15] = new ColoredSpace("Blue", route1);
+        super->path[17] = new ColoredSpace("Red", route1);
+        super->path[19] = new ColoredSpace("Yellow", route1);
+        super->path[21] = new ColoredSpace("Green", route1);
+        super->path[23] = new ColoredSpace( "Blue", route1);
+        super->path[25] = new ColoredSpace( "Red", route1);
     }
 

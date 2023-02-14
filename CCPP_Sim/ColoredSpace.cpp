@@ -5,6 +5,7 @@
 //  Created by Steve Frezza on 2/12/23.
 //
 
+#include "MagicButton.hpp"
 #include "Player.hpp"
 #include "ColoredSpace.hpp"
 #include "CircularRoute.hpp"
