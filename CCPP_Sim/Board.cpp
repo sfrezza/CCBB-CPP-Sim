@@ -7,6 +7,8 @@
 
 #include "Board.hpp"
 #include "ColoredSpace.hpp"
+#include "Route.hpp"
+#include "Space.hpp"
 
 void Board::dieRoll(std::string playerColor, int noSpaces) {
     Player *player = players[ getPlayerIndex(playerColor) ];

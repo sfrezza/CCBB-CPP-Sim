@@ -15,7 +15,7 @@ class BlackSpace;
 class CircularRoute : public Route {
 public:
     Route *nextRoute;
-    MagicButton myMagicButton;
+    MagicButton *myMagicButton;
     
     CircularRoute(int length, Route *next);
     Space* movePlayer(Player *player, int noSpaces) override; 
