@@ -9,8 +9,8 @@
 #define Player_hpp
 
 #include <string>
-#include "Space.hpp"
 
+class Space;
 class Player {
 public:
     std::string myColor;

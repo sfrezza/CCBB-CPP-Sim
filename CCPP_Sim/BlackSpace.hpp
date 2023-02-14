@@ -8,6 +8,8 @@
 #ifndef BlackSpace_hpp
 #define BlackSpace_hpp
 
+class CircularRoute;
+
 #include "Space.hpp"
 #include "CircularRoute.hpp"
 

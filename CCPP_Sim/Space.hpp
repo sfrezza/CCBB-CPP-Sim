@@ -11,11 +11,9 @@
 #include <stdio.h>
 #include <string>
 #include <set>
-#include "Player.hpp"
-#include "Route.hpp"
 
-class Space;
-
+class Player;
+class Route;
 struct SpaceTuple {
     Space *space;
     int index;
@@ -31,11 +29,11 @@ struct SpaceTuple {
 class Space {
 public:
     std::string myColor;
-    std::set<Player*> currentPlayers = {};
+    std::set<Player*> currentPlayers;
     Route *myRoute;
     
 public:
-    Space(){myColor = "Unassigned";}
+    Space(){myColor = "Unassigned"; currentPlayers = {};}
     Space(std::string color);
     virtual Space* endMovementOn(Player *player);
     void startMovement(Player *player);
