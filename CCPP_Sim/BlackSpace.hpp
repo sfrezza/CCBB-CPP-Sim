@@ -16,7 +16,7 @@ class CircularRoute;
 class BlackSpace : public Space {
 public:
     BlackSpace(CircularRoute *route) : Space("Black") {
-        myRoute = route;
+        myRoute = (Route *)route;
     }
     Space* endMovementOn(Player *player) override;
 };
