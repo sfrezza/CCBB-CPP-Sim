@@ -9,21 +9,14 @@
 #define CircularRoute_hpp
 
 #include "Route.hpp"
-#include "MagicButton.hpp"
-#include "BlackSpace.hpp"
-
+class MagicButton;
+class BlackSpace;
 class CircularRoute : public Route {
 public:
     Route *nextRoute;
     MagicButton myMagicButton;
     
-    CircularRoute(int length, Route *next) : Route(length) {
-        nextRoute = next;
-        for (int index=0; index < length; index++) {
-            BlackSpace newBlackSpace = BlackSpace(this);
-            path.push_back(&newBlackSpace);
-        }
-    }
+    CircularRoute(int length, Route *next);
     Space* movePlayer(Player *player, int noSpaces) override; 
 };
 #endif /* CircularRoute_hpp */

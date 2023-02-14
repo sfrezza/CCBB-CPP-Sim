@@ -12,16 +12,9 @@
 
 class LinearRoute : public Route {
 public:
-    Space endSpace = Space(color:"End");
-    
-    LinearRoute(int length):Route(length) {
-        for (int index=0; index<length; index++) {
-            Space newSpace = Space("Purple");
-            newSpace.myRoute = this;
-            path.push_back(&newSpace);
-        }
-        endSpace.myRoute = this;
-    }
-    Space movePlayer(Player player, int noSpaces); // override
+    Space *endSpace;
+
+    LinearRoute(int length);
+    Space *movePlayer(Player *player, int noSpaces) override; 
 };
 #endif /* LinearRoute_hpp */

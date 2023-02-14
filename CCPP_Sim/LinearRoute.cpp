@@ -6,12 +6,24 @@
 //
 
 #include "LinearRoute.hpp"
+#include "Route.hpp"
+#include "Space.cpp"
 
-Space LinearRoute::movePlayer(Player player, int noSpaces) {
+LinearRoute::LinearRoute(int length) : Route(length) {
+    endSpace = new Space("End");
+    for (int index=0; index<length; index++) {
+        Space newSpace = Space("Purple");
+        newSpace.myRoute = this;
+        path.push_back(&newSpace);
+    }
+    endSpace->myRoute = this;
+}
+
+Space* LinearRoute::movePlayer(Player *player, int noSpaces) {
     Route *parent = (Route*) this;
     SpaceTuple spaceTuple = parent->startPlayerMove(player, 0); // Not sure why the cast is required...
     int newIndex = spaceTuple.index + noSpaces;
-    Space movementEndSpace = *spaceTuple.space;
+    Space *movementEndSpace = spaceTuple.space;
         
     if (newIndex > path.size()) { // Handle the 'no movement' part of linear movement
         newIndex = spaceTuple.index; // No movement
@@ -22,7 +34,7 @@ Space LinearRoute::movePlayer(Player player, int noSpaces) {
         movementEndSpace = path[newIndex]->endMovementOn(player);
     }
     else if (newIndex == path.size()) { // someone just finished!
-        movementEndSpace = endSpace.endMovementOn(player);
+        movementEndSpace = endSpace->endMovementOn(player);
     }
     return movementEndSpace;
 }
