@@ -7,7 +7,7 @@
 
 #include "LinearRoute.hpp"
 #include "Route.hpp"
-#include "Space.cpp"
+#include "Space.hpp"
 
 LinearRoute::LinearRoute(int length) : Route(length) {
     endSpace = new Space("End");
