@@ -8,6 +8,11 @@
 #include "Player.hpp"
 #include "Route.hpp"
 
+Space::Space(){
+    myColor = "Unassigned"; 
+    currentPlayers = {};
+}
+
 Space::Space(std::string color)
 {
     myColor = color;

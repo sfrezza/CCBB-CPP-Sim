@@ -5,13 +5,15 @@
 //  Created by Steve Frezza on 2/12/23.
 //
 #include "Player.hpp"
+#include "MagicButton.hpp"
 #include "BlackSpace.hpp"
 #include "Space.hpp"
-#include "MagicButton.hpp"
+#include "CircularRoute.hpp"
+
 
 Space* BlackSpace::endMovementOn(Player *player) {
     CircularRoute *myCircRoute = (CircularRoute *)myRoute;  // Not sure why this is necessary...
-    std::string buttonColor = myCircRoute->myMagicButton.buttonColor;
+    std::string buttonColor = myCircRoute->myMagicButton->buttonColor;
     
     if (player->myColor == buttonColor) {  // Advance to the next route
         return myCircRoute->nextRoute->startSpace->endMovementOn(player);
