@@ -7,6 +7,7 @@
 
 #include "Route.hpp"
 #include "Space.hpp"
+#include "Player.hpp"
 
 Route::Route() {
     startSpace = new Space("Start");
@@ -42,8 +43,8 @@ SpaceTuple Route::getCurrentSpace(Player *player) {
     return SpaceTuple(startSpace, -1); // This is a BAD error condition.  'Should be 'catch-throw'
 }
  
-Space Route::movePlayer (Player player, int noSpaces) {
-    return startSpace;   // This should never be called
+Space* Route::movePlayer (Player *player, int noSpaces) {
+    return player->currentSpace;   // This should never be called
 }
 
 SpaceTuple Route::startPlayerMove(Player *player, int noSpaces) {

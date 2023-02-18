@@ -8,7 +8,11 @@
 #include "Board.hpp"
 #include "ColoredSpace.hpp"
 #include "Route.hpp"
+#include "CircularRoute.hpp"
+#include "LinearRoute.hpp"
 #include "Space.hpp"
+#include "WheelSpace.hpp"
+#include "Player.hpp"
 
 Board::Board() {
     route3 = new LinearRoute(16);

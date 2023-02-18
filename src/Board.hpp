@@ -8,7 +8,10 @@
 #ifndef Board_hpp
 #define Board_hpp
 
-class Player.hpp;
+#include <vector>
+
+class Player;
+class Route;
 class CircularRoute;
 class LinearRoute;
 
