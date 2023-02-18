@@ -10,6 +10,17 @@
 #include "Route.hpp"
 #include "Space.hpp"
 
+Board::Board() {
+    route3 = new LinearRoute(16);
+    route2 = new CircularRoute(18, route3);
+    route1 = new CircularRoute(26, route2);
+    players = {};
+    initializeLinearRoute(route3);
+    initializeCircularRoute2();
+    initializeCircularRoute1();
+    initializePlayers();
+}
+
 void Board::dieRoll(std::string playerColor, int noSpaces) {
     Player *player = players[ getPlayerIndex(playerColor) ];
     Route *currentRoute = player->currentSpace->myRoute;

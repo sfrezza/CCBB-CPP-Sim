@@ -23,7 +23,7 @@ public:
     Route();
     Route(int length);
     SpaceTuple getCurrentSpace(Player *player);
-    virtual Space* movePlayer(Player *player, int noSpaces){};
+    virtual Space* movePlayer(Player *player, int noSpaces);
     SpaceTuple startPlayerMove(Player *player, int noSpaces);
 };
 

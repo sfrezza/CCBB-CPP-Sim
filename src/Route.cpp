@@ -42,11 +42,9 @@ SpaceTuple Route::getCurrentSpace(Player *player) {
     return SpaceTuple(startSpace, -1); // This is a BAD error condition.  'Should be 'catch-throw'
 }
  
-/*
 Space Route::movePlayer (Player player, int noSpaces) {
     return startSpace;   // This should never be called
 }
-*/
 
 SpaceTuple Route::startPlayerMove(Player *player, int noSpaces) {
     SpaceTuple spaceTuple = getCurrentSpace(player);
