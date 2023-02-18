@@ -1,20 +1,16 @@
+//
+//  main.cpp
+//  CCBB-CPP-X
+//
+//  Created by Steve Frezza on 2/18/23.
+//
+
 #include <iostream>
-#include <gtest/gtest.h>
+#include "src/Board.hpp"
 
-#include "Board.hpp"
-
-TEST(FakeTest, SFrezzaFakeTesting) {
-    EXPECT_STREQ("Red", "Red");
-}
-
-
-
-int main(int argc, char * argv[]) {
+int main(int argc, const char * argv[]) {
     // insert code here...
-    std::cout << "Hello, CCBB World!\n";
-    Board *myBoard = new Board();
-
-    testing::InitGoogleTest(&argc, argv);
-    
-    return RUN_ALL_TESTS();
+    std::cout << "Hello, World!\n";
+    // Board myBoard = Board();
+    return 0;
 }
