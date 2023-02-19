@@ -6,7 +6,7 @@ compile:
   stage: build
   image: amd64/gcc:12
   script: |
-    sudo apt-get install -y cmake
+    apt-get update -y && apt-get install -y cmake
     cmake -B build
     cmake --build build
   artifacts:
