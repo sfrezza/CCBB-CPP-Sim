@@ -1,18 +1,13 @@
 Hello, CCBB World!
-[==========] Running 2 tests from 2 test suites.
+[==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
-[----------] 1 test from FakeTest
-[ RUN      ] FakeTest.SFrezzaFakeTesting
-[       OK ] FakeTest.SFrezzaFakeTesting (0 ms)
-[----------] 1 test from FakeTest (0 ms total)
-
 [----------] 1 test from PlayerTest
 [ RUN      ] PlayerTest.ConstructorWorks
 [       OK ] PlayerTest.ConstructorWorks (0 ms)
 [----------] 1 test from PlayerTest (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 2 tests from 2 test suites ran. (0 ms total)
-[  PASSED  ] 2 tests.
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
 Program ended with exit code: 0
 
