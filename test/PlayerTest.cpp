@@ -6,9 +6,9 @@
 //
 
 #include "PlayerTest.hpp"
-#include "src/Space.hpp"
-#include "src/Player.hpp"
-#include "src/LinearRoute.hpp"
+#include "Space.hpp"
+#include "Player.hpp"
+#include "LinearRoute.hpp"
 
 #include <gtest/gtest.h>
 
