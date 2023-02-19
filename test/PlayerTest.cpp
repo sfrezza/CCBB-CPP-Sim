@@ -24,14 +24,12 @@ class PlayerTest : public ::testing::Test {
     std::string testColor;
     Route *someRoute;
     Space *someSpace;
-    Player *p;
 
   PlayerTest() {
      // You can do set-up work for each test here.
       testColor = "Green";
       someRoute = new LinearRoute(5);
       someSpace = someRoute->startSpace;
-      p = new Player(testColor,someSpace);
   }
 
   ~PlayerTest() override {
@@ -55,8 +53,9 @@ class PlayerTest : public ::testing::Test {
   // for Foo.
 };
 
-// Tests that the Foo::Bar() method does Abc.
+// Tests that the Player::Player() method does what it should.
 TEST_F(PlayerTest, ConstructorWorks) {
+    Player *p = new Player(testColor,someSpace);
     EXPECT_EQ(p->currentSpace,someSpace);
     EXPECT_EQ(p->myColor.compare(testColor),0);
 }

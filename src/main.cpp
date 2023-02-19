@@ -3,12 +3,6 @@
 
 #include "Board.hpp"
 
-TEST(FakeTest, SFrezzaFakeTesting) {
-    EXPECT_STREQ("Red", "Red");
-}
-
-
-
 int main(int argc, char * argv[]) {
     // insert code here...
     std::cout << "Hello, CCBB World!\n";
