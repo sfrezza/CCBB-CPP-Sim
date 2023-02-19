@@ -16,7 +16,7 @@ compile:
 
 ctest:
   stage: test
-  image: kitware/cmake
+  image: kitware/cmake:ci-clang_cxx_modules-x86_64-2023-02-15
   script: |
     cd build
     ctest
