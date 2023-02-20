@@ -9,11 +9,18 @@ FetchContent_MakeAvailable(googletest)
 add_library(GTest::GTest INTERFACE IMPORTED)
 target_link_libraries(GTest::GTest INTERFACE gtest_main)
 
-add_executable(board_test board_test.cpp)
+file(GLOB_RECURSE TEST_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
-target_link_libraries(board_test
+add_executable(test_ccbb ${TEST_SOURCES})
+
+include_directories (${CCBB_SOURCE_DIR}/src)
+
+
+target_link_libraries(test_ccbb
   PRIVATE
+  ccbb
   GTest::GTest
 )
 
-add_test(board_gtests board_test)
+add_test(NAME CcbbTest COMMAND test_ccbb)
