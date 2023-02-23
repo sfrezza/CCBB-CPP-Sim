@@ -10,4 +10,3 @@ target_link_libraries(
   play
   ccbb
 )
-
