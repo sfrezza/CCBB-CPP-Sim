@@ -8,15 +8,11 @@ class BoardTest : public ::testing::Test {
  protected:
   // You can remove any or all of the following functions if their bodies would
   // be empty.
-    std::string testColor;
-    LinearRoute *someRoute;
-    Space *someSpace;
-
+  Board* myBoard = new Board();	
+    
   BoardTest() {
-     // You can do set-up work for each test here.
-      testColor = "Green";
-      someRoute = new LinearRoute(5);
-      someSpace = someRoute->startSpace;
+     // You can do set-up work common for each test here.
+
   }
 
   ~BoardTest() override {
@@ -42,9 +38,7 @@ class BoardTest : public ::testing::Test {
 
 // Tests that the Player::Player() method does what it should.
 TEST_F(BoardTest, ConstructorWorks) {
-    Player *p = new Player(testColor,someSpace);
-    Board *b = new Board();
-
-    EXPECT_EQ(p->currentSpace,someSpace);
-    EXPECT_EQ(p->myColor.compare(testColor),0);
+    // Verify that the three routes all have correct lengths
+    EXPECT_EQ(myBoard->route3->path.size(),16);
+    EXPECT_EQ(myBoard->route2->path.size(),18);
 }
