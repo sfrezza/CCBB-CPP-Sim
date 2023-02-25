@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 
 #include "Space.hpp"
-#include "Player.hpp"
-#include "LinearRoute.hpp"
-#include "Board.hpp"
+#include "../src/Player.hpp"
+#include "../src/LinearRoute.hpp"
+#include "../src/Board.hpp"
 class BoardTest : public ::testing::Test {
  protected:
   // You can remove any or all of the following functions if their bodies would
@@ -41,4 +41,5 @@ TEST_F(BoardTest, ConstructorWorks) {
     // Verify that the three routes all have correct lengths
     EXPECT_EQ(myBoard->route3->path.size(),16);
     EXPECT_EQ(myBoard->route2->path.size(),18);
+    EXPECT_EQ(myBoard->route1->path.size(),26);
 }
