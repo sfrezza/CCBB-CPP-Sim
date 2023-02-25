@@ -10,7 +10,7 @@
 #include "CircularRoute.hpp"
 #include "Player.hpp"
     
-CircularRoute::CircularRoute(int length, Route *next) : Route(length) {
+CircularRoute::CircularRoute(int length, Route *next) : Route() {
     nextRoute = next;
     for (int index=0; index < length; index++) {
         BlackSpace newBlackSpace = BlackSpace(this);
