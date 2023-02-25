@@ -1,9 +1,9 @@
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 
 #include "Space.hpp"
-#include "../src/Player.hpp"
-#include "../src/LinearRoute.hpp"
-#include "../src/Board.hpp"
+#include "Player.hpp"
+#include "LinearRoute.hpp"
+#include "Board.hpp"
 class BoardTest : public ::testing::Test {
  protected:
   // You can remove any or all of the following functions if their bodies would

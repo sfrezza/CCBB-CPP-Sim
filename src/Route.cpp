@@ -11,17 +11,15 @@
 
 Route::Route() {
     startSpace = new Space("Start");
-    path = {};
     startSpace->myRoute = this;
 }
 
 Route::Route(int length) {
     startSpace = new Space("Start");
-    path = {};
     for (int index =0; index < (length - 1); index++) {
-        Space newSpace = Space(std::string("Black"));
-        newSpace.myRoute = this;
-        path.push_back(&newSpace);
+        Space *newSpace = new Space(std::string("Black"));
+        newSpace->myRoute = this;
+        path.push_back(newSpace);
     }
     startSpace->myRoute = this;
 }
