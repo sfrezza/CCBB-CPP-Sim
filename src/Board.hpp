@@ -8,21 +8,24 @@
 #ifndef Board_hpp
 #define Board_hpp
 
-#include <vector>
-
-class Player;
-class Route;
-class CircularRoute;
-class LinearRoute;
+#include "Player.hpp"
+#include "CircularRoute.hpp"
+#include "LinearRoute.hpp"
+#include "WheelSpace.hpp"
 
 class Board {
 public:
-    LinearRoute *route3;
-    CircularRoute *route2;
-    CircularRoute *route1;
-    std::vector<Player*> players;
-    Board();
-
+    LinearRoute *route3 = new LinearRoute(16);
+    CircularRoute *route2 = new CircularRoute(18, route3);
+    CircularRoute *route1 = new CircularRoute(26, route2);
+    std::vector<Player*> players = {};
+    
+    Board() {
+        initializeLinearRoute(route3);
+        initializeCircularRoute2();
+        initializeCircularRoute1();
+        initializePlayers();
+    }
     void dieRoll(std::string playerColor, int value);
     
 private:

@@ -9,7 +9,7 @@
 #include "Route.hpp"
 #include "Space.hpp"
 
-LinearRoute::LinearRoute(int length) : Route(length) {
+LinearRoute::LinearRoute(int length) : Route() {
     endSpace = new Space("End");
     for (int index=0; index<length; index++) {
         Space newSpace = Space("Purple");

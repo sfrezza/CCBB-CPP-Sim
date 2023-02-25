@@ -8,22 +8,7 @@
 #include "Board.hpp"
 #include "ColoredSpace.hpp"
 #include "Route.hpp"
-#include "CircularRoute.hpp"
-#include "LinearRoute.hpp"
 #include "Space.hpp"
-#include "WheelSpace.hpp"
-#include "Player.hpp"
-
-Board::Board() {
-    route3 = new LinearRoute(16);
-    route2 = new CircularRoute(18, route3);
-    route1 = new CircularRoute(26, route2);
-    players = {};
-    initializeLinearRoute(route3);
-    initializeCircularRoute2();
-    initializeCircularRoute1();
-    initializePlayers();
-}
 
 void Board::dieRoll(std::string playerColor, int noSpaces) {
     Player *player = players[ getPlayerIndex(playerColor) ];

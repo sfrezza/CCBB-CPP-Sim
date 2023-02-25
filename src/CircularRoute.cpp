@@ -10,7 +10,7 @@
 #include "CircularRoute.hpp"
 #include "Player.hpp"
     
-CircularRoute::CircularRoute(int length, Route *next) : Route(length) {
+CircularRoute::CircularRoute(int length, Route *next) : Route() {
     nextRoute = next;
     for (int index=0; index < length; index++) {
         BlackSpace newBlackSpace = BlackSpace(this);
@@ -25,9 +25,9 @@ Space* CircularRoute::movePlayer(Player *player, int noSpaces) {
         newIndex -= path.size();
     }
     Space *startingSpace = player->currentSpace;
-    if (noSpaces != 0) {
-        startingSpace->currentPlayers.extract(player);
-    }
+    //if (noSpaces != 0) {
+    //    startingSpace->currentPlayers.extract(player);
+    //}
     // Should call the 'endMovement' that matches the instance type.
     Space *endSpace = path[newIndex]->endMovementOn(player);
     return endSpace;
