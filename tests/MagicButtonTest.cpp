@@ -5,9 +5,8 @@
 //  Created by Steve Frezza on 2/18/23.
 //
 
-#include "Space.hpp"
+#include "MagicButton.hpp"
 #include "Player.hpp"
-#include "LinearRoute.hpp"
 
 #include <gtest/gtest.h>
 
@@ -15,20 +14,18 @@ namespace my {
 namespace project {
 namespace {
 
+}
 // The fixture for testing class Foo.
 class MagicButtonTest : public ::testing::Test {
  protected:
   // You can remove any or all of the following functions if their bodies would
   // be empty.
     std::string testColor;
-    Route *someRoute;
-    Space *someSpace;
+    Player *p;
 
   MagicButtonTest() {
      // You can do set-up work for each test here.
       testColor = "Green";
-      someRoute = new LinearRoute(5);
-      someSpace = someRoute->startSpace;
   }
 
   ~MagicButtonTest() override {
@@ -54,9 +51,9 @@ class MagicButtonTest : public ::testing::Test {
 
 // Tests that the Player::Player() method does what it should.
 TEST_F(MagicButtonTest, ConstructorWorks) {
-    
+   testColor = "Green";
+   EXPECT_EQ(testColor, "Green");
 }
 
 }  // namespace
 }  // namespace project
-}  // namespace my

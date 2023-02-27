@@ -1,5 +1,5 @@
 //
-//  CircularButtonTest.cpp
+//  CircularRouteTest.cpp
 //  CCBB-CPP-X
 //
 //  Created by Steve Frezza on 2/18/23.
@@ -26,7 +26,6 @@ class CircularRouteTest : public ::testing::Test {
 
   CircularRouteTest() {
      // You can do set-up work for each test here.
-      testColor = "Green";
       someRoute = new LinearRoute(5);
       someSpace = someRoute->startSpace;
   }
