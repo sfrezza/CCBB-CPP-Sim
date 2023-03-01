@@ -29,7 +29,7 @@ namespace my {
 
                 JumpSpaceTest() {
                     // You can do set-up work for each test here.
-                    testColor = "Wheel";
+                    testColor = "Green Wheel";
                     owningRoute = new LinearRoute(16);
                     
                     
