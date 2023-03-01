@@ -79,6 +79,15 @@ namespace my
                 EXPECT_EQ(b->route2->path[12]->myColor, "Green");
                 EXPECT_EQ(b->route2->path[14]->myColor, "Yellow");
                 EXPECT_EQ(b->route2->path[16]->myColor, "Blue");
+                // Players
+                EXPECT_EQ(b->players[0]->myColor, "Red");
+                EXPECT_EQ(b->players[1]->myColor, "Green");
+                EXPECT_EQ(b->players[2]->myColor, "Blue");
+                EXPECT_EQ(b->players[3]->myColor, "Yellow");
+                EXPECT_EQ(b->players[0]->currentSpace, b->route1->path[3]);
+                EXPECT_EQ(b->players[1]->currentSpace, b->route1->path[3]);
+                EXPECT_EQ(b->players[2]->currentSpace, b->route1->path[3]);
+                EXPECT_EQ(b->players[3]->currentSpace, b->route1->path[3]);
             }
 
         } // namespace
