@@ -12,7 +12,7 @@ target_link_libraries(GTest::GTest INTERFACE gtest_main)
 file(GLOB_RECURSE TEST_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
-add_executable(test_ccbb ${TEST_SOURCES})
+add_executable(test_ccbb ${TEST_SOURCES} "LinearRouteTest.cpp" "JumpSpaceTest.cpp")
 
 include_directories (${CCBB_SOURCE_DIR}/src)
 
