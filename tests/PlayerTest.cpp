@@ -9,6 +9,7 @@
 #include "Space.hpp"
 #include "Player.hpp"
 #include "LinearRoute.hpp"
+#include "Board.hpp"
 
 #include <gtest/gtest.h>
 
@@ -58,6 +59,13 @@ TEST_F(PlayerTest, ConstructorWorks) {
     Player *p = new Player(testColor,someSpace);
     EXPECT_EQ(p->currentSpace,someSpace);
     EXPECT_EQ(p->myColor.compare(testColor),0);
+}
+TEST_F(PlayerTest,MoveWorks) {
+   Board *b = new Board();
+   Player *p = b->players[1];
+   ASSERT_EQ(p->currentSpace, b->route1->startSpace);
+   b->route1->path[3]->endMovementOn(p);
+   ASSERT_EQ(b->route1->path[3],p->currentSpace);
 }
 
 }  // namespace
