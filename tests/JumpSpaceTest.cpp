@@ -22,15 +22,17 @@ namespace my {
                 // You can remove any or all of the following functions if their bodies would
                 // be empty.
                 std::string testColor;
-                Route* someRoute;
-                Space* someSpace;
+                Route* owningRoute;
+                Space* Jump;
+                Route* jumpTarget;
+                
 
                 JumpSpaceTest() {
                     // You can do set-up work for each test here.
-                    testColor = "Green";
-                    someRoute = new LinearRoute(5);
-                    someSpace = someRoute->startSpace;
-                    jumpTo = jumpTarget->startSpace;
+                    testColor = "Wheel";
+                    owningRoute = new LinearRoute(16);
+                    
+                    
                 }
 
                 ~JumpSpaceTest() override {
@@ -56,9 +58,8 @@ namespace my {
 
             // Tests that the Player::Player() method does what it should.
             TEST_F(JumpSpaceTest, ConstructorWorks) {
-                Player* p = new Player(testColor, someSpace);
-                Space* newEndSpace = jumpTo->endMovementOn(player);
-                EXPECT_EQ(p->currentSpace, someSpace);
+                Player* p = new Player(testColor, Jump);
+                EXPECT_EQ(p->currentSpace, Jump);
                 EXPECT_EQ(p->myColor.compare(testColor), 0);
             }
 

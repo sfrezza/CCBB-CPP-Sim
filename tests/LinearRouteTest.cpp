@@ -27,7 +27,7 @@ namespace my {
                 LinearRouteTest() {
                     // You can do set-up work for each test here.
                     testColor = "Purple";
-                    someRoute = new LinearRoute(5);
+                    someRoute = new LinearRoute(16);
                     someSpace = someRoute->startSpace;
                 }
 
