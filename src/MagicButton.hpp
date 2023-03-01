@@ -11,7 +11,8 @@
 #include <string>
 class MagicButton {
 public:
-    std::string buttonColor = "Unknown";
+    std::string buttonColor;
+    MagicButton();
 };
 
 #endif /* MagicButton_hpp */
