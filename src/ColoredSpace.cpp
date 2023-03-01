@@ -24,6 +24,6 @@ Space *ColoredSpace::endMovementOn(Player *player) {
     }
     else { // do nothing
         Space* super = (Space*)this; //force call to parent function
-        return super->endMovementOn(player);
+        return Space::endMovementOn(player);
     }
 }
