@@ -5,9 +5,13 @@
 //  Created by Steve Frezza on 2/18/23.
 //
 
+#include "Board.cpp"
+#include "Board.hpp"
 #include "Space.hpp"
 #include "Player.hpp"
 #include "LinearRoute.hpp"
+#include "CircularRoute.hpp"
+#include "CircularRoute.cpp"
 
 #include <gtest/gtest.h>
 
@@ -51,11 +55,16 @@ class CircularRouteTest : public ::testing::Test {
   // for Foo.
 };
 
-// Tests that the Player::Player() method does what it should.
-TEST(CircularRouteTest, ConstructorWorks) {
+// Sanity check for the CircularRouteTest::CircularRouteTest() method, so we know that GTesting works.
+TEST(CircularRouteTest, SanityCheck) {
     EXPECT_TRUE(true);
 }
 
+TEST(CircularRouteTest, CurrentSpace) {
+   Space *s = new Space();
+   s->Space("blue");
+   EXCEPT_EQ(space->"blue")
+}
 }  // namespace
 }  // namespace project
 }  // namespace my
