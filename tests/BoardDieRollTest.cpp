@@ -60,7 +60,7 @@ namespace my
                 Player *p = b->players[0];
                 b->dieRoll("red", 3);
                 EXPECT_EQ(p->currentSpace->myColor, "red");
-                EXPECT_EQ(p->currentSpace->myRoute, b->route1->path[3]);
+                EXPECT_EQ(p->currentSpace, b->route1->path[3]);
             }
 
         } // namespace
