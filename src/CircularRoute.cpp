@@ -16,6 +16,7 @@ CircularRoute::CircularRoute(int length, Route *next) : Route() {
         BlackSpace newBlackSpace = BlackSpace(this);
         path.push_back(&newBlackSpace);
     }
+    myMagicButton = new MagicButton();
 }
 
 Space* CircularRoute::movePlayer(Player *player, int noSpaces) {
