@@ -26,7 +26,6 @@ protected:
     
     ColoredSpaceTest() {
         b = new Board();
-        p = b->players[0]; // "Red"
     }
     
     ~ColoredSpaceTest() override {}
@@ -36,6 +35,7 @@ protected:
 
 TEST_F(ColoredSpaceTest, EndMovementOnInitial) {
     // MagicButton is not pointing to a specific color yet; therefore, player does not proceed.
+    p = b->players[0]; // "Red"
     EXPECT_EQ(p->currentSpace, b->route1->startSpace);
     b->route1->path[3]->endMovementOn(p);
     EXPECT_EQ(b->route1->path[3],p->currentSpace);
@@ -48,18 +48,20 @@ TEST_F(ColoredSpaceTest, EndMovementOnInitial) {
 
 // Spec: Player moves to next route if they land on a colored space and the magic button color matches the space's color.
 
-Test_F(ColoredSpaceTest, EndMovementOnWrongColor) {
-    // * Need a line to change magic button color
-    EXPECT_EQ(y->currentSpace, b->route1->startSpace);
-    b->route1->path[3]->endMovementOn(y);
-    EXPECT_EQ(b->route1->path[3],y->currentSpace);
+TEST_F(ColoredSpaceTest, EndMovementOnWrongColor) {
+    p = b->players[0]; // "Red"
+    EXPECT_EQ(p->currentSpace, b->route1->startSpace);
+    // b->dieRoll("Red", 1); // Segmentation fault
+    b->route1->path[3]->endMovementOn(p);
+    EXPECT_EQ(b->route1->path[3],p->currentSpace); // Bus Error (when using dieRoll prior)
 }
 
-TEST_F(ColoredSpaceTest, EndMovementOnCorrectColor) {
-    // * Need a line to change magic button color
-    EXPECT_EQ(y->currentSpace, b->route1->startSpace);
-    b->route1->path[3]->endMovementOn(y);
-    EXPECT_EQ(b->route2->startSpace,y->currentSpace);
+TEST_F(ColoredSpaceTest, EndMovementOnRightColor) {
+    p = b->players[3]; // "Yellow"
+    EXPECT_EQ(p->currentSpace, b->route1->startSpace);
+    //b->dieRoll("Yellow", 1); // Segmentation fault
+    b->route1->path[3]->endMovementOn(p);
+    EXPECT_EQ(b->route2->startSpace,p->currentSpace); // Bus Error (when using dieRoll prior)
 }
 
 }  // namespace

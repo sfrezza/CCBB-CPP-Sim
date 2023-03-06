@@ -10,6 +10,7 @@
 #include "BlackSpace.hpp"
 #include "Board.hpp"
 #include <gtest/gtest.h>
+
 namespace my {
 namespace project {
 namespace {
@@ -22,7 +23,6 @@ class BlackSpaceTest : public ::testing::Test {
 
     BlackSpaceTest() {
         b = new Board();
-        p = b->players[0]; // "Yellow"
     }
     
     ~BlackSpaceTest() override {}
@@ -32,6 +32,7 @@ class BlackSpaceTest : public ::testing::Test {
 
 TEST_F(BlackSpaceTest, EndMovementOnInitial) {
     // MagicButton is not pointing to a specific color yet; therefore, player does not proceed.
+    p = b->players[3]; // "Yellow"
     EXPECT_EQ(p->currentSpace, b->route1->startSpace);
     b->route1->path[3]->endMovementOn(p);
     EXPECT_EQ(b->route1->path[3],p->currentSpace);
@@ -44,18 +45,20 @@ TEST_F(BlackSpaceTest, EndMovementOnInitial) {
 
 // Spec: Player moves to next route if they land on a black space and the magic button color matches the player's color.
 
-Test_F(BlackSpaceTest, EndMovementOnWrongColor) {
-    // * Need a line to change magic button color
-    EXPECT_EQ(y->currentSpace, b->route1->startSpace);
-    b->route1->path[3]->endMovementOn(y);
-    EXPECT_EQ(b->route1->path[3],y->currentSpace);
+TEST_F(BlackSpaceTest, EndMovementOnWrongColor) {
+    p = b->players[0]; // "Red"
+    EXPECT_EQ(p->currentSpace, b->route1->startSpace);
+    // b->dieRoll("Red", 1); // Segmentation fault
+    b->route1->path[3]->endMovementOn(p);
+    EXPECT_EQ(b->route1->path[3],p->currentSpace); // Bus Error (when using dieRoll prior)
 }
 
-Test_F(BlackSpaceTest, EndMovementOnCorrectColor) {
-    // * Need a line to change magic button color
-    EXPECT_EQ(y->currentSpace, b->route1->startSpace);
-    b->route1->path[3]->endMovementOn(y);
-    EXPECT_EQ(b->route2->startSpace,y->currentSpace);
+TEST_F(BlackSpaceTest, EndMovementOnRightColor) {
+    p = b->players[3]; // "Yellow"
+    EXPECT_EQ(p->currentSpace, b->route1->startSpace);
+    b->dieRoll("Yellow", 1); // Segmentation fault
+    b->route1->path[3]->endMovementOn(p);
+    EXPECT_EQ(b->route2->startSpace,p->currentSpace); // Bus Error (when using dieRoll prior)
 }
 
 }  // namespace
