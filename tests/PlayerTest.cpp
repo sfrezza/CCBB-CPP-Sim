@@ -59,15 +59,19 @@ TEST_F(PlayerTest, ConstructorWorks) {
     Player *p = new Player(testColor,someSpace);
     EXPECT_EQ(p->currentSpace,someSpace);
     EXPECT_EQ(p->myColor.compare(testColor),0);
+    EXPECT_STREQ(p->myColor.c_str(),"Green"); // Repeat of previous compare
 }
 TEST_F(PlayerTest,MoveWorks) {
    Board *b = new Board();
    Player *p = b->players[1];
+   Player *p0 = b->players[0];
    ASSERT_EQ(p->currentSpace, b->route1->startSpace);
-   b->route1->startPlayerMove(p);
-   
+   SpaceTuple sTuple = b->route1->startPlayerMove(p); // This should only generate a tuple.
    std::set<Player*> playersOnStartSpace = b->route1->startSpace->currentPlayers;
+   ASSERT_TRUE(playersOnStartSpace.find(p0) != playersOnStartSpace.end() );
    ASSERT_TRUE(playersOnStartSpace.find(p) != playersOnStartSpace.end() );
+   ASSERT_EQ(sTuple.space, p->currentSpace);
+
    b->route1->path[3]->endMovementOn(p);
    ASSERT_EQ(b->route1->path[3],p->currentSpace);
 }
