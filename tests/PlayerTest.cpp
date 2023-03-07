@@ -61,7 +61,7 @@ TEST_F(PlayerTest, ConstructorWorks) {
     EXPECT_EQ(p->myColor.compare(testColor),0);
     EXPECT_STREQ(p->myColor.c_str(),"Green"); // Repeat of previous compare
 }
-TEST_F(PlayerTest,MoveWorks) {
+TEST_F(PlayerTest,EndMovementOnWorks) {
    Board *b = new Board();
    Player *p = b->players[1];
    Player *p0 = b->players[0];
@@ -74,8 +74,27 @@ TEST_F(PlayerTest,MoveWorks) {
 
    b->route1->path[3]->endMovementOn(p);
    ASSERT_EQ(b->route1->path[3],p->currentSpace);
-}
 
+}
+TEST_F(PlayerTest,MovePlayerWorks) {
+   Board *b = new Board();
+   Player *p = b->players[1];
+   Player *p0 = b->players[0];
+
+   ASSERT_EQ(p->currentSpace, b->route1->startSpace);
+   
+   Space *endSpace = b->route1->movePlayer(p,3); // This should reset the current space, etc.
+   std::set<Player*> playersOnEndSpace = endSpace->currentPlayers;
+   ASSERT_TRUE(playersOnEndSpace.find(p0) == playersOnEndSpace.end() );
+   ASSERT_TRUE(playersOnEndSpace.find(p) != playersOnEndSpace.end() );
+
+   std::set<Player*> playersOnStartSpace = b->route1->startSpace->currentPlayers;
+   ASSERT_TRUE(playersOnStartSpace.find(p0) != playersOnStartSpace.end() );
+   ASSERT_TRUE(playersOnStartSpace.find(p) == playersOnStartSpace.end() );
+
+   ASSERT_EQ(b->route1->path[3],p->currentSpace);
+
+}
 }  // namespace
 }  // namespace project
 }  // namespace my

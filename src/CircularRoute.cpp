@@ -13,8 +13,8 @@
 CircularRoute::CircularRoute(int length, Route *next) : Route() {
     nextRoute = next;
     for (int index=0; index < length; index++) {
-        BlackSpace newBlackSpace = BlackSpace(this);
-        path.push_back(&newBlackSpace);
+        BlackSpace *newBlackSpace = new BlackSpace(this);
+        path.push_back(newBlackSpace);
     }
     myMagicButton = new MagicButton();
 }
@@ -30,6 +30,7 @@ Space* CircularRoute::movePlayer(Player *player, int noSpaces) {
     //    startingSpace->currentPlayers.extract(player);
     //}
     // Should call the 'endMovement' that matches the instance type.
+    Space *landOnSpace = path[newIndex];
     Space *endSpace = path[newIndex]->endMovementOn(player);
     return endSpace;
 }

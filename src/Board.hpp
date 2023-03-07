@@ -15,17 +15,12 @@
 
 class Board {
 public:
-    LinearRoute *route3 = new LinearRoute(16);
-    CircularRoute *route2 = new CircularRoute(18, route3);
-    CircularRoute *route1 = new CircularRoute(26, route2);
-    std::vector<Player*> players = {};
+    LinearRoute *route3;
+    CircularRoute *route2;
+    CircularRoute *route1;
+    std::vector<Player*> players;
     
-    Board() {
-        initializeLinearRoute(route3);
-        initializeCircularRoute2();
-        initializeCircularRoute1();
-        initializePlayers();
-    }
+    Board(); 
     void dieRoll(std::string playerColor, int value);
     
 private:
