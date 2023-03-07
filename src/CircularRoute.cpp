@@ -20,7 +20,7 @@ CircularRoute::CircularRoute(int length, Route *next) : Route() {
 }
 
 Space* CircularRoute::movePlayer(Player *player, int noSpaces) {
-    SpaceTuple spaceTuple = Route::startPlayerMove(player, 0);
+    SpaceTuple spaceTuple = Route::startPlayerMove(player);
     int newIndex = spaceTuple.index + noSpaces;
     if (newIndex >= path.size()) { // Handle the circular part of route movement
         newIndex -= path.size();

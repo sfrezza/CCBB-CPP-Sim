@@ -4,8 +4,8 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}",
-                "${workspaceFolder}/src/",
-                "${workspaceFolder}/tests/",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/tests",
                 "${workspaceFolder}/build/_deps/**",
                 "${default}"
             ],

@@ -21,7 +21,7 @@ LinearRoute::LinearRoute(int length) : Route() {
 
 Space* LinearRoute::movePlayer(Player *player, int noSpaces) {
     Route *parent = (Route*) this;
-    SpaceTuple spaceTuple = parent->startPlayerMove(player, 0); // Not sure why the cast is required...
+    SpaceTuple spaceTuple = parent->startPlayerMove(player); // Not sure why the cast is required...
     int newIndex = spaceTuple.index + noSpaces;
     Space *movementEndSpace = spaceTuple.space;
         
