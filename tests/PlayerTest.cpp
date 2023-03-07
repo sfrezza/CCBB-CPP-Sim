@@ -64,10 +64,10 @@ TEST_F(PlayerTest,MoveWorks) {
    Board *b = new Board();
    Player *p = b->players[1];
    ASSERT_EQ(p->currentSpace, b->route1->startSpace);
-  // b->route1->startPlayerMove(p);
+   b->route1->startPlayerMove(p);
    
    std::set<Player*> playersOnStartSpace = b->route1->startSpace->currentPlayers;
-   ASSERT_TRUE(playersOnStartSpace.find(p) == playersOnStartSpace.end() );
+   ASSERT_TRUE(playersOnStartSpace.find(p) != playersOnStartSpace.end() );
    b->route1->path[3]->endMovementOn(p);
    ASSERT_EQ(b->route1->path[3],p->currentSpace);
 }
