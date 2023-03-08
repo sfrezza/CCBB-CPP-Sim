@@ -69,14 +69,12 @@ TEST_F(PlayerTest,EndMovementOnWorks) {
    SpaceTuple sTuple = b->route1->startPlayerMove(p); // This should only generate a tuple.
    std::set<Player*> playersOnStartSpace = b->route1->startSpace->currentPlayers;
    
-
-   
-   //ASSERT_TRUE(playersOnStartSpace.find(p0) != playersOnStartSpace.end() );
+   ASSERT_TRUE(playersOnStartSpace.find(p0) != playersOnStartSpace.end() );
    ASSERT_TRUE(playersOnStartSpace.find(p) == playersOnStartSpace.end() );
    ASSERT_EQ(sTuple.space, p->currentSpace);
 
    b->route1->path[3]->endMovementOn(p);
-   ASSERT_EQ(b->route1->path[2],p->currentSpace);
+   ASSERT_EQ(b->route1->path[3],p->currentSpace);
 
 }
 TEST_F(PlayerTest,MovePlayerWorks) {
