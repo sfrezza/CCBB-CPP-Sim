@@ -25,10 +25,7 @@ Space* CircularRoute::movePlayer(Player *player, int noSpaces) {
     if (newIndex >= path.size()) { // Handle the circular part of route movement
         newIndex -= path.size();
     }
-    Space *startingSpace = player->currentSpace;
-    //if (noSpaces != 0) {
-    //    startingSpace->currentPlayers.extract(player);
-    //}
+
     // Should call the 'endMovement' that matches the instance type.
     Space *landOnSpace = path[newIndex];
     Space *endSpace = path[newIndex]->endMovementOn(player);

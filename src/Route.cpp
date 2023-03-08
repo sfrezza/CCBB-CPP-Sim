@@ -46,6 +46,9 @@ SpaceTuple Route::getCurrentSpace(Player *player) {
 
 SpaceTuple Route::startPlayerMove(Player *player) {
     SpaceTuple spaceTuple = getCurrentSpace(player);
+    Space *startingSpace = player->currentSpace;
+    startingSpace->currentPlayers.erase(player);
+    
     return spaceTuple;
 }
 

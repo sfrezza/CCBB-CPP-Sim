@@ -8,12 +8,12 @@
 #include "Player.hpp"
 #include "Route.hpp"
 
-Space::Space(){
+Space::Space() {
     myColor = "Unassigned"; 
-    currentPlayers = {};
+    currentPlayers = std::set<Player*>();
 }
 
-Space::Space(std::string color)
+Space::Space(std::string color) : Space()
 {
     myColor = color;
 }
