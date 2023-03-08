@@ -20,7 +20,6 @@ Space* BlackSpace::endMovementOn(Player *player) {
     }
     else { // Change the Magic Button to the car color
         myCircRoute->myMagicButton->buttonColor = player->myColor;
-        Space* super = (Space*) this; // force call to parent function
         return Space::endMovementOn(player);
     }
 }

@@ -23,7 +23,6 @@ Space *ColoredSpace::endMovementOn(Player *player) {
         return myCircRoute->nextRoute->startSpace->endMovementOn(player);
     }
     else { // do nothing
-        Space* super = (Space*)this; //force call to parent function
         return Space::endMovementOn(player);
     }
 }
