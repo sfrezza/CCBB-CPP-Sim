@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Board.hpp"
 
-/* Temporarily remove 
+/* Temporarily ignore so the tests/main() will compile
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, CCBB World!\n";
