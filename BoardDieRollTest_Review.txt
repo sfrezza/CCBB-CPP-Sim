@@ -1,0 +1,76 @@
+
+——————————————————————————————————————————————————————————————————————————————
+Review for BoardDieRollTest.cpp
+Tester:    Sam Shadle
+Reviewer:  Brendan O'Neill
+Version:   Updated 03/06/23
+Reviewed:  03/09/23
+
+——————————————————————————————————————————————————————————————————————————————
+
+Test(s) in review:
+
+57		TEST_F(BoardDieRollTest, FunctionWorks)
+58		{
+59			Board *b = new Board();
+60   		Player *p = b->players[0];
+61   		b->dieRoll("red", 3);
+62  		EXPECT_EQ(p->currentSpace->myColor, "red");
+63 		    EXPECT_EQ(p->currentSpace, b->route1->path[3]);
+64		}		
+
+——————————————————————————————————————————————————————————————————————————————
+
+Notes:
+
+Main Points — //Review each step below for more details//
+	1) Add more tests for the pre- and postconditions
+	2) Create tests for specific partitions and boundaries.
+
+Step 1) Understanding the requirements, inputs, and outputs
+	- The preconditions are assumed, but not explicitly tested. For example,
+		before calling dieRoll {line 61}, there should be tests to check that:
+		- player p is located on the start space for the first route.
+		- player p is initialized with the color "red" // Should be "Red" //
+	- The postconditions are somewhat tested, but more should be tested. Ex:
+		- Tested:     The player's new current space is the path[3]
+		- Error:      The expect on line 61 will fail because in Board.cpp, 
+					    route->path[3] is a "Yellow" space, not a "red" space.
+		- Untested:   Player p's space before moving no longer contains p
+					  path[3] itself contains p
+					  
+Step 2) Explore what the program does for various inputs
+	- The test only deals with a single "input;" rolling the die for p one time
+		and to only one type of space. To improve this, consider implementing 
+		rolls to black spaces (with magic button as the same and different colors), 
+		rolls to colored spaces (with the magic button on same and different 
+		colors), and ending on a WheelSpace.
+	- Could also add a test for each player.
+	
+Step 3) Explore possible inputs and outputs, and identify partitions
+	- To minimize test, could consider doing 1-2 tests for  each player, with
+		each test varying the space type landed on and the color of the magic
+		button (to match and not to match).
+	- Could test dieRoll with invalid color names, like "Brown" or "Purple"
+	
+Step 4) Analyze the boundaries
+	- Test boundaries of roll number partition. Ex:
+		dieRoll("Color", [0 1 2 11 12 13])
+	- Boundaries of number of players on the initial space and target space.
+
+Step 5) Devise test cases
+	- Test partitions as mentioned above.
+		- allowed die rolls
+		- allowed players on the board/spaces
+		- allowed color names
+		- target space with correct magic button color
+		- target space with incorrect magic button color
+		- space types
+		
+Step 6) Automate test cases
+	- This step is implicit in the code being reviewed, which is an automated
+		test.
+		
+		
+END REVIEW 
+——————————————————————————————————————————————————————————————————————————————
