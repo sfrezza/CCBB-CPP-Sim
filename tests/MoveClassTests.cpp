@@ -1,5 +1,10 @@
 #include "Board.hpp"
 #include "Player.hpp"
+#include "Route.hpp"
+#include "Space.hpp"
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include <gtest/gtest.h>
 
 namespace my {
@@ -27,9 +32,30 @@ protected:
 \*——————————————————————*/
 
 TEST_F(MoveClassTest, FairWeather_1) {
-    // Pre-conditions //
+    
+// Setup //
     p = b->players[0]; // "Red"
-    EXPECT_EQ(p->currentSpace, b->route1->startSpace);
+    
+    // Setting up noSpaces as a random number between 1 and 6, inclusive.
+    srand(time(0));
+    int noSpaces = rand() % 6 + 1;
+    
+// Pre-condition Tests //
+    EXPECT_EQ(p->currentSpace, b->route1->startSpace); // Test: p is initialized on correct space
+    EXPECT_EQ(p->myColor, "Red"); // Test: p has a valid color, "Red"
+    EXPECT_EQ(b->route1->startSpace->currentPlayers.count(p), 1); // Test: currentPlayers has p
+    EXPECT_EQ(p->currentSpace->currentPlayers.count(p), 1); // Test: currentPlayers has p
+   
+// Inputs //
+    Route *currentRoute = p->currentSpace->myRoute;
+    currentRoute->movePlayer(p, noSpaces);
+    
+    // *** Segmentation fault on movePlayer() *** //
+    Space *endSpace = currentRoute->movePlayer(p, noSpaces);
+    
+    EXPECT_EQ(endSpace, currentRoute->path[noSpaces - 1]);
+    EXPECT_EQ(endSpace, p->currentSpace);
+    
 }
 
 /*————————————————————————*\
