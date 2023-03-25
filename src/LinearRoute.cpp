@@ -13,7 +13,7 @@ LinearRoute::LinearRoute(int length) : Route() {
     endSpace = new Space("End");
     for (int index=0; index<length; index++) {
         Space *newSpace = new Space("Purple");
-        newSpace.myRoute = this;
+        newSpace->myRoute = this;
         path.push_back(newSpace);
     }
     endSpace->myRoute = this;
