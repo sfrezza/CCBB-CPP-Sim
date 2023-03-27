@@ -1,9 +1,9 @@
 //
-//  PersonTest.cpp
+//  MoveClassTests.cpp
 //  CCBB-CPP-X
 //
-//  Created by Steve Frezza on 2/18/23.
-//  
+//  Document by Steve Frezza on 3/26/23.
+//  Tests by Gian Asci, Kaden Mescher, and Carmen Alexander
 
 #include "Space.hpp"
 #include "Player.hpp"
@@ -16,7 +16,7 @@ namespace my {
         namespace {
 
             // The fixture for testing class Foo.
-            class PlayerTest : public ::testing::Test {
+            class MoveClassTests : public ::testing::Test {
             protected:
                 // You can remove any or all of the following functions if their bodies would
                 // be empty.
@@ -24,36 +24,29 @@ namespace my {
                 Route* someRoute;
                 Space* someSpace;
                 ~
-                PlayerTest() {
+                MoveClassTests() {
                     // You can do set-up work for each test here.
                     testColor = "Green";
                     someRoute = new LinearRoute(5);
                     someSpace = someRoute->startSpace;
                 }
 
-                ~PlayerTest() override {
-                    // You can do clean-up work that doesn't throw exceptions here.
-                }
-
-                // If the constructor and destructor are not enough for setting up
-                // and cleaning up each test, you can define the following methods:
-
-                void SetUp() override {
-                    // Code here will be called immediately after the constructor (right
-                    // before each test).
-                }
-
-                void TearDown() override {
-                    // Code here will be called immediately after each test (right
-                    // before the destructor).
-                }
+                ~MoveClassTests() override {}
+                void SetUp() override {}
+                void TearDown() override {}
 
                 // Class member functions declared here can be used by all tests in the test suite
                 // for Foo.
             };
-
+            // Fair weather test. Sees if what happens when the dice is rolled.
+            TEST_F(MoveClassTests, CorrectDieRole) {
+                int dieRoll = 1 + (rand() % 6);
+                EXPECT_EQ(p->currentSpace, someSpace);
+            }
+            
+            
             // Tests that the Player::Player() method does what it should.
-            TEST_F(PlayerTest, ConstructorWorks) {
+            TEST_F(MoveClassTests, ConstructorWorks) {
                 Player* p = new Player(testColor, someSpace);
                 EXPECT_EQ(p->currentSpace, someSpace);
                 EXPECT_EQ(p->myColor.compare(testColor), 0);
