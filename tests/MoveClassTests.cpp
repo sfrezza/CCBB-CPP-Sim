@@ -5,9 +5,14 @@
 //  Created by Steve Frezza on 2/18/23.
 //  
 
-#include "Space.hpp"
+#include "Board.hpp"
 #include "Player.hpp"
+#include "Route.hpp"
+#include "Space.hpp"
+#include "BlackSpace.hpp"
+#include "CircularRoute.hpp"
 #include "LinearRoute.hpp"
+
 
 #include <gtest/gtest.h>
 
@@ -16,22 +21,21 @@ namespace my {
         namespace {
 
             // The fixture for testing class Foo.
-            class PlayerTest : public ::testing::Test {
+            class MoveClassTests : public ::testing::Test {
             protected:
                 // You can remove any or all of the following functions if their bodies would
                 // be empty.
                 std::string testColor;
                 Route* someRoute;
                 Space* someSpace;
-                ~
-                PlayerTest() {
+                ~MoveClassTests() {
                     // You can do set-up work for each test here.
                     testColor = "Green";
                     someRoute = new LinearRoute(5);
                     someSpace = someRoute->startSpace;
                 }
 
-                ~PlayerTest() override {
+                ~MoveClassTests() override {
                     // You can do clean-up work that doesn't throw exceptions here.
                 }
 
@@ -52,11 +56,25 @@ namespace my {
                 // for Foo.
             };
 
-            // Tests that the Player::Player() method does what it should.
-            TEST_F(PlayerTest, ConstructorWorks) {
-                Player* p = new Player(testColor, someSpace);
-                EXPECT_EQ(p->currentSpace, someSpace);
-                EXPECT_EQ(p->myColor.compare(testColor), 0);
+           
+
+            }
+            TEST_F(MoveClassTests, CorrectSpaceReturned_Fair)
+            {
+                p = b->players[3];
+                srand(time(0));
+                int noSpaces = 2;
+                EXPECT_EQ(p->currentSpace, b->route1->startSpace);            
+                EXPECT_EQ(p->myColor, "Yellow");                                 
+                EXPECT_EQ(b->route1->startSpace->currentPlayers.count(p), 1); 
+                EXPECT_EQ(p->currentSpace->currentPlayers.count(p), 1);       
+
+               
+                Route* currentRoute = p->currentSpace->myRoute;
+                Space* endSpace = currentRoute->movePlayer(p, noSpaces);
+
+                EXPECT_EQ(endSpace, currentRoute->path[noSpaces - 1]);
+                EXPECT_EQ(endSpace, p->currentSpace);
             }
 
         }  // namespace
