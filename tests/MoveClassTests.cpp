@@ -59,7 +59,7 @@ namespace my {
            
 
             }
-            TEST_F(MoveClassTests, CorrectSpaceReturned_Fair)
+            TEST_F(MoveClassTests, FairWeather)
             {
                 p = b->players[3];
                 srand(time(0));
