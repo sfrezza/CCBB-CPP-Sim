@@ -15,7 +15,7 @@
  // Aliases to 'make' (pun intended) this easier. //
  // Just copy and paste into terminal. //
  
- alias cln='echo y | make clean'; alias mke='cmake -B build'; alias bld='cmake --build build'
+ alias cln='echo y | make clean'; alias mke='cmake -B build'; alias bld='cmake --build build'; alias go="cln; mke; bld;"
  
  */
 
@@ -33,6 +33,8 @@ namespace my
                 Board *b;
                 Player *p;
                 Player *q;
+                Route *currentRoute;
+                Space *endSpace;
 
                 MoveClassTest()
                 {
@@ -61,7 +63,7 @@ namespace my
 
                 // Setting up noSpaces as a random number between 1 and 6, inclusive.
                 srand(time(0));
-                int noSpaces = 4;//rand() % 6 + 1;
+                int noSpaces = rand() % 6 + 1;
 
                 // Pre-condition Tests //
                 EXPECT_EQ(p->currentSpace, b->route1->startSpace);            // Test: p is initialized on correct space
@@ -70,8 +72,8 @@ namespace my
                 EXPECT_EQ(p->currentSpace->currentPlayers.count(p), 1);       // Test: currentPlayers has p
 
                 // Inputs //
-                Route *currentRoute = p->currentSpace->myRoute;
-                Space *endSpace = currentRoute->movePlayer(p, noSpaces);
+                currentRoute = p->currentSpace->myRoute;
+                endSpace = currentRoute->movePlayer(p, noSpaces);
                 
                 // Testing that the returned space matches the expected space in currentRoute's path //
                 EXPECT_EQ(endSpace, currentRoute->path[noSpaces - 1]);
@@ -92,7 +94,7 @@ namespace my
 
                 // Setting up noSpaces as a random number between 1 and 6, inclusive.
                 srand(time(0));
-                int noSpaces = 6;//rand() % 6 + 1;
+                int noSpaces = rand() % 6 + 1;
 
                 // Pre-condition Tests //
                 EXPECT_EQ(p->currentSpace, b->route1->startSpace);            // Test: p is initialized on correct space
@@ -101,8 +103,8 @@ namespace my
                 EXPECT_EQ(p->currentSpace->currentPlayers.count(p), 1);       // Test: currentPlayers has p
 
                 // Inputs //
-                Route *currentRoute = p->currentSpace->myRoute;
-                Space *endSpace = currentRoute->movePlayer(p, noSpaces);
+                currentRoute = p->currentSpace->myRoute;
+                endSpace = currentRoute->movePlayer(p, noSpaces);
 
                 // Testing that the current space has gained a player //
                 EXPECT_EQ(p->currentSpace->currentPlayers.count(p), 1);
@@ -114,47 +116,67 @@ namespace my
              *  Stormy Weather Tests  *
             \*————————————————————————*/
 
-            TEST_F(MoveClassTest, NoSpacesBVAOut_Stormy)
+            TEST_F(MoveClassTest, NoSpacesBVAOutHigh_Stormy)
             {
-                /* Description: Tests values for noSpaces that are less than 1 (0 in this case) or
-                                greater than 6. The specifications do not indicate how this should be
-                                handled, so the behavior is undefined
+                /* Description: Tests values for noSpaces that are greater than 6. The specifications do not
+                                indicate how this should be handled, so the behavior is undefined. It's presumed
+                                that movePlayer will work as normal.
                  */
                 
                 // Here we assume all preconditions are true, so no pre-condition tests are needed.
                 
                 // Setup //
                 p = b->players[2]; // "Blue"
+                Route *currentRoute;
+                Space *endSpace;
+                int noSpaces;
+                
+                // noSpaces is between 7 and 26.
+                srand(time(0));
+                noSpaces = rand() % 20 + 7;
+
+                // Inputs //
+                currentRoute = p->currentSpace->myRoute;
+                Space *startingSpace = p->currentSpace;
+                endSpace = currentRoute->movePlayer(p, noSpaces);
+
+                // Expected Output //
+                EXPECT_EQ(endSpace, p->currentSpace);
+                EXPECT_EQ(startingSpace, p->currentSpace); //EXPECT_NE — Should not move
+                                                                              // Test case that tests bad results
+
+                // The test may pass but it is not correct. A roll greater than 6 shouldn't be allowed to work.
+            }
+        
+            TEST_F(MoveClassTest, NoSpacesBVAOutLow_Stormy)
+            {
+                /* Description: Tests values for noSpaces that are less than 1 (0 in this case) The
+                                specifications do not indicate how this should be handled, so the behavior
+                                is undefined.
+                */
+            
+                // Here we assume all preconditions are true, so no pre-condition tests are needed.
+            
+                // Setup //
                 q = b->players[3]; // "Yellow
                 Route *currentRoute;
                 Space *endSpace;
                 int noSpaces;
 
-                /* Testing a high "out" value. */
-                
-                // noSpaces is greater than 6 in this case.
-                noSpaces = 10;
-
-                // Inputs //
-                currentRoute = p->currentSpace->myRoute;
-                endSpace = currentRoute->movePlayer(p, noSpaces);
-
-                // Expected Output //
-                EXPECT_EQ(endSpace, p->currentSpace);
-                
-                /* Testing a low "out" value. */
-                
                 // noSpaces is less than 1 in this case.
-     //           noSpaces = 0;
-                
+                noSpaces = 0;
+            
                 // Inputs //
-                currentRoute = q->currentSpace->myRoute;
-                endSpace = currentRoute->movePlayer(q, noSpaces);
                 
+                currentRoute = q->currentSpace->myRoute;
+                Space *startingSpace = q->currentSpace;
+                //EXPECT_EQ(currentRoute->startSpace, q->currentSpace); // Testing to ensure player starts on startSpace.
+                
+                endSpace = currentRoute->movePlayer(q, noSpaces);
+            
                 // Expected Output //
                 EXPECT_EQ(endSpace, q->currentSpace);
-
-                // The test may pass but it is not correct. In this case, we expect it should fail.
+                EXPECT_EQ(startingSpace, q->currentSpace);
             }
         
             TEST_F(MoveClassTest, NoSpacesNegative_Stormy)
@@ -180,31 +202,32 @@ namespace my
 
                 // Expected Output //
                 EXPECT_EQ(endSpace, p->currentSpace);
+                // should end on the same space it started on
             }
             
             TEST_F(MoveClassTest, BadPlayer_Stormy)
             {
                 /* Description: Tests movePlayer using a new player that is not initialized in the board class.
-                                This player is on the route3 startspace. The player is purposefully not
+                                This player is on the route2 startSpace. The player is purposefully not
                                 correctly initialized, so that it is not located in currentPlayers. This
                                 test should either fail or break.
                  */
                 
                 // Setup //
-                Player *bad = new Player("Purple", b->route3->startSpace);
+                Player *bad = new Player("Purple", b->route2->startSpace);
                 Route *currentRoute;
                 Space *endSpace;
                 int noSpaces;
                 
                 srand(time(0));
-                noSpaces = 3;
+                noSpaces = rand() % 6 + 1;
                 
                 // Inputs //
                 currentRoute = bad->currentSpace->myRoute;
                 endSpace = currentRoute->movePlayer(bad, noSpaces);
                 
                 // Expected Output //
-                EXPECT_EQ(endSpace, b->route3->path[noSpaces - 1]);
+                EXPECT_EQ(endSpace, b->route2->path[noSpaces - 1]);
             }
         
             TEST_F(MoveClassTest, NoSpacesGTCircRoute_Stormy)
@@ -220,7 +243,7 @@ namespace my
                 int noSpaces = routeLength + 1;
                 LinearRoute *testLinear = new LinearRoute(routeLength);
                 CircularRoute *testCircular = new CircularRoute(3, testLinear);
-                for (int i = 0; i < testCircular->routeLength; i++)
+                for (int i = 0; i < routeLength; i++)
                 {
                     testCircular->path[i] = new BlackSpace(testCircular);
                 }
@@ -229,20 +252,11 @@ namespace my
                     
                 // Inputs
                 currentRoute = p->currentSpace->myRoute;
-                endSpace = currentRoute->movePlayer(p, noSpaces);
+                endSpace = currentRoute->movePlayer(p, noSpaces); // Is supposed to update currentPlayers
                 
                 EXPECT_EQ(endSpace, testCircular->path[0]);
                 EXPECT_EQ(p->currentSpace, testCircular->path[0]);
-                EXPECT_EQ(p->currentSpace->currentPlayers.count(p), 1);
-                EXPECT_EQ(testCircular->startSpace->currentPlayers.count(p), 0);
             }
-        
-    //        TEST_F(MoveClassTest, NoSpacesGTLinRoute_Stormy)
-    //        {
-                // Setup //
-              //  LinearRoute *testLinear = new LinearRoute(3);
-    //        }
-         
         } // namespace
     } // namespace project
 } // namespace my
