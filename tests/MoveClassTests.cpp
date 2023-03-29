@@ -1,4 +1,4 @@
-//
+
 //  MoveClassTests.cpp
 //  CCBB-CPP-X
 //
@@ -28,26 +28,17 @@ namespace my {
                 std::string testColor;
                 Route* someRoute;
                 Space* someSpace;
-<<<<<<< HEAD
-                ~
+                Board* b;
+                Player* p;
+                //Player* red = b->route1->path[0];
                 MoveClassTests() {
-=======
-                ~MoveClassTests() {
->>>>>>> refs/remotes/origin/Gian_Kaden_Branch
                     // You can do set-up work for each test here.
                     testColor = "Green";
                     someRoute = new LinearRoute(5);
                     someSpace = someRoute->startSpace;
+                    b = new Board();
                 }
-
-<<<<<<< HEAD
                 ~MoveClassTests() override {}
-                void SetUp() override {}
-                void TearDown() override {}
-=======
-                ~MoveClassTests() override {
-                    // You can do clean-up work that doesn't throw exceptions here.
-                }
 
                 // If the constructor and destructor are not enough for setting up
                 // and cleaning up each test, you can define the following methods:
@@ -61,12 +52,10 @@ namespace my {
                     // Code here will be called immediately after each test (right
                     // before the destructor).
                 }
->>>>>>> refs/remotes/origin/Gian_Kaden_Branch
 
                 // Class member functions declared here can be used by all tests in the test suite
                 // for Foo.
             };
-<<<<<<< HEAD
             // Fair weather test. Sees if what happens when the dice is rolled.
             TEST_F(MoveClassTests, CorrectDieRole) {
                 int dieRoll = 1 + (rand() % 6);
@@ -76,12 +65,9 @@ namespace my {
             
             // Tests that the Player::Player() method does what it should.
             TEST_F(MoveClassTests, ConstructorWorks) {
-                Player* p = new Player(testColor, someSpace);
+                p = new Player(testColor, someSpace);
                 EXPECT_EQ(p->currentSpace, someSpace);
                 EXPECT_EQ(p->myColor.compare(testColor), 0);
-=======
-
-           
 
             }
             TEST_F(MoveClassTests, FairWeather)
@@ -100,8 +86,14 @@ namespace my {
 
                 EXPECT_EQ(endSpace, currentRoute->path[noSpaces - 1]);
                 EXPECT_EQ(endSpace, p->currentSpace);
->>>>>>> refs/remotes/origin/Gian_Kaden_Branch
             }
+            //Test_F(MoveClassTests, Allpiecesmove) {
+              //  Player* red = b->route1->path[0];
+                //Player* blue = b->route1->path[0];
+                //Player* green = b->route1->path[0];
+                //Player* yellow = b->route1->path[0];
+
+            //}
 
         }  // namespace
     }  // namespace project
