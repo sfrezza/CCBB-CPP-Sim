@@ -40,11 +40,11 @@ namespace my {
                     someSpace = someRoute->startSpace;
                 }
 
-<<<<<<< HEAD
+
                 ~MoveClassTests() override {}
                 void SetUp() override {}
                 void TearDown() override {}
-=======
+
                 ~MoveClassTests() override {
                     // You can do clean-up work that doesn't throw exceptions here.
                 }
@@ -61,12 +61,12 @@ namespace my {
                     // Code here will be called immediately after each test (right
                     // before the destructor).
                 }
->>>>>>> refs/remotes/origin/Gian_Kaden_Branch
+
 
                 // Class member functions declared here can be used by all tests in the test suite
                 // for Foo.
             };
-<<<<<<< HEAD
+
             // Fair weather test. Sees if what happens when the dice is rolled.
             TEST_F(MoveClassTests, CorrectDieRole) {
                 int dieRoll = 1 + (rand() % 6);
@@ -79,7 +79,7 @@ namespace my {
                 Player* p = new Player(testColor, someSpace);
                 EXPECT_EQ(p->currentSpace, someSpace);
                 EXPECT_EQ(p->myColor.compare(testColor), 0);
-=======
+
 
            
 
@@ -96,11 +96,12 @@ namespace my {
 
                
                 Route* currentRoute = p->currentSpace->myRoute;
+                Space* currentSpace = p->currentSpace;
                 Space* endSpace = currentRoute->movePlayer(p, noSpaces);
 
                 EXPECT_EQ(endSpace, currentRoute->path[noSpaces - 1]);
                 EXPECT_EQ(endSpace, p->currentSpace);
->>>>>>> refs/remotes/origin/Gian_Kaden_Branch
+
             }
 
         }  // namespace
