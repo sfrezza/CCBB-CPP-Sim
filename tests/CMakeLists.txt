@@ -26,7 +26,7 @@ file(GLOB_RECURSE TEST_SOURCES
 add_executable(test_ccbb ${TEST_SOURCES})
 
 include_directories (${CCBB_SOURCE_DIR}/src)
-
+target_include_directories(test_ccbb INTERFACE rapidcheck) 
 
 target_link_libraries(test_ccbb
   PRIVATE
