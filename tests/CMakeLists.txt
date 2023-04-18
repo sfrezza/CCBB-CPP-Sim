@@ -1,3 +1,5 @@
+set(RC_ENABLE_GTEST ON)
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -17,8 +19,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(rapidcheck)
 
-add_library(rc::detail INTERFACE IMPORTED)
-target_link_libraries(rc::detail INTERFACE rapidcheck)
+add_library(rc INTERFACE IMPORTED)
+target_link_libraries(rc INTERFACE rapidcheck)
+target_link_libraries(rapidcheck_gtest INTERFACE rapidcheck)
 
 file(GLOB_RECURSE TEST_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
@@ -32,7 +35,8 @@ target_link_libraries(test_ccbb
   PRIVATE
   ccbb
   GTest::GTest
-  rc::detail
+  rapidcheck
+  rapidcheck_gtest
 )
 
 add_test(NAME CcbbTest COMMAND test_ccbb)
