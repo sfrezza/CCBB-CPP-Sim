@@ -23,6 +23,8 @@ add_library(rc INTERFACE IMPORTED)
 target_link_libraries(rc INTERFACE rapidcheck)
 target_link_libraries(rapidcheck_gtest INTERFACE rapidcheck)
 
+# set_property(TARGET rc PROPERTY CXX_STANDARD 11)
+
 file(GLOB_RECURSE TEST_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
