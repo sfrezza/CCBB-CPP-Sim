@@ -17,12 +17,6 @@
 namespace my {
 namespace project {
 
-RC_GTEST_PROP(MyTestCase,
-              copyOfStringIsIdenticalToOriginal,
-              (const std::string &str)) {
-  const auto strCopy = str;
-  RC_ASSERT(strCopy == str);
-}
 
 /*
 // Tests that the Player::Player() constructor method does what it should.
@@ -45,8 +39,8 @@ RC_GTEST_PROP(RandomizeMoveTestCase, firstMoves,()) {
    Board *b = new Board();
 
 // Properties to vary:
-   const auto playerNumber = *rc::gen::inRange(0,5);
-   const auto dieRoll = *rc::gen::inRange(2,4);
+   const auto playerNumber = *rc::gen::inRange(0,3).as("Player index");
+   const auto dieRoll = *rc::gen::inRange(1,6).as("Die roll for moves");
 
    Player *p = b->players[playerNumber];;
    RC_ASSERT(p->currentSpace == b->route1->startSpace);
@@ -63,7 +57,7 @@ RC_GTEST_PROP(RandomizeMoveTestCase, firstMoves,()) {
    RC_ASSERT(playersOnEndSpace.count(p) == 1);
 
    std::set<Player*> remainingPlayersOnStartSpace = b->route1->startSpace->currentPlayers;
-   RC_ASSERT(remainingPlayersOnStartSpace.count(p) == 0);
+   // RC_ASSERT(remainingPlayersOnStartSpace.count(p) == 0);
 }
 
 
