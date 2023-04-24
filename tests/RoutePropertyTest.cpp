@@ -25,9 +25,9 @@ RC_GTEST_PROP(MyRapidPlayerTest, ConstructorWorksAllColors, ()) {
     Space *someSpace = someRoute->startSpace;
 //    const auto testColor = *rc::gen::build(
     //    // List all of the acceptable colors
-        rc::gen::element("Red","Blue","Green","Yellow"));
+    const auto testColor = *rc::gen::element("Red","Blue","Green","Yellow");
 
-    Player *p = new Player("Red", someSpace);
+    Player *p = new Player(std::string(testColor), someSpace);
     RC_ASSERT(p->currentSpace == someSpace);
     RC_ASSERT(p->myColor.compare(testColor) == 0);
 }
