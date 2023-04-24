@@ -19,22 +19,21 @@ public:
     CircularRoute *route2 = new CircularRoute(18, route3);
     CircularRoute *route1 = new CircularRoute(26, route2);
     std::vector<Player*> players = {};
-    
+   
     Board() {
         initializeLinearRoute(route3);
         initializeCircularRoute2();
         initializeCircularRoute1();
-        initializePlayers();
     }
-    void dieRoll(std::string playerColor, int value);
-    
+    bool dieRoll(std::string playerColor, int value);
+    bool initializePlayers(std::vector<std::string> playerColorStrings);
+
 private:
     int getPlayerIndex(std::string color);
     Player* getPlayerFromColor(std::string color);
     void initializeLinearRoute(Route* target);
     void initializeCircularRoute2();
     void initializeCircularRoute1();
-    void initializePlayers();
 };
     
 #endif /* Board_hpp */

@@ -10,10 +10,14 @@
 #include "Route.hpp"
 #include "Space.hpp"
 
-void Board::dieRoll(std::string playerColor, int noSpaces) {
+bool Board::dieRoll(std::string playerColor, int noSpaces) {
     Player *player = players[ getPlayerIndex(playerColor) ];
     Route *currentRoute = player->currentSpace->myRoute;
-    currentRoute->movePlayer(player, noSpaces);
+    Space *resultingSpace = currentRoute->movePlayer(player, noSpaces);
+
+    if (resultingSpace == route3->endSpace) return false; 
+
+    return true;
 }
     
 int Board::getPlayerIndex(std::string color){
@@ -32,17 +36,17 @@ Player* Board::getPlayerFromColor(std::string color) {
     int index = getPlayerIndex(color);
     return players[index];
 }
-    
-void Board::initializePlayers() {
-    players.push_back(new Player("Red", route1->startSpace));
-    players.push_back(new Player("Green", route1->startSpace));
-    players.push_back(new Player("Blue", route1->startSpace));
-    players.push_back(new Player("Yellow", route1->startSpace)); // This can be randomized later
 
+    
+bool Board::initializePlayers(std::vector<std::string> playerColorStrings) {
+    for (std::string playerColor : playerColorStrings) {
+        players.push_back(new Player(playerColor, route1->startSpace));
+    }
     Route* super = (Route*)(route1);    // Not clear why needed.
     for (Player *p : players) {
         super->startSpace->endMovementOn(p);
     }
+    return true;
 }
     
 void Board::initializeLinearRoute(Route *target) {
@@ -63,7 +67,7 @@ void Board::initializeCircularRoute2() {
         super->path[16] = new ColoredSpace("Blue", route2);
     }
     
-    void Board::initializeCircularRoute1() {
+void Board::initializeCircularRoute1() {
         Route* super = (Route*)(route1);
         super->path[3] = new ColoredSpace("Yellow", route1);
         super->path[5] = new ColoredSpace("Green", route1);

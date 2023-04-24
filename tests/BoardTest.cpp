@@ -42,5 +42,5 @@ TEST_F(BoardTest, ConstructorWorks) {
     EXPECT_EQ(myBoard->route3->path.size(),16);
     EXPECT_EQ(myBoard->route2->path.size(),18);
     EXPECT_EQ(myBoard->route1->path.size(),26);
-    ASSERT_EQ(myBoard->players.size(), 4);
+    ASSERT_EQ(myBoard->players.size(), 0);
 }
