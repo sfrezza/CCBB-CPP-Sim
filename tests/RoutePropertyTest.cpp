@@ -37,7 +37,9 @@ RC_GTEST_PROP(MyRapidPlayerTest, ConstructorWorksAllColors, ()) {
 RC_GTEST_PROP(RandomizeMoveTestCase, firstMoves,()) {
 // Test setup:
    Board *b = new Board();
-
+   std::vector<std::string> playerOrder = {"Red", "Green", "Blue", "Yellow"};
+   b->initializePlayers(playerOrder);
+   
 // Properties to vary:
    const auto playerNumber = *rc::gen::inRange(0,3).as("Player index");
    const auto dieRoll = *rc::gen::inRange(1,6).as("Die roll for moves");

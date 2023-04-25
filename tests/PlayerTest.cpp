@@ -62,6 +62,8 @@ TEST_F(PlayerTest, ConstructorWorks) {
 }
 TEST_F(PlayerTest,MoveWorks) {
    Board *b = new Board();
+   std::vector<std::string> testPlayers = {"Red", "Blue"};
+   b->initializePlayers(testPlayers);
    Player *p = b->players[1];
    ASSERT_EQ(p->currentSpace, b->route1->startSpace);
    b->route1->path[3]->endMovementOn(p);
