@@ -50,7 +50,7 @@ bool Board::initializePlayers(std::vector<std::string> playerColorStrings) {
 }
     
 void Board::initializeLinearRoute(Route *target) {
-        // Assumes this is built as a generic 'Route' of the proper length
+    // Assumes this is built as a generic 'Route' of the proper length
     target->path[5] = new WheelSpace(route2,target);
     target->path[11] = new WheelSpace(target,target);
     }
