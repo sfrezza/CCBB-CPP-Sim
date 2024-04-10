@@ -17,21 +17,6 @@
 #include <iostream>
 using namespace std;
 
-/*
-// Tests that the Player::Player() constructor method does what it should.
-RC_GTEST_PROP(MyRapidPlayerTest, ConstructorWorksAllColors, ()) {
-    LinearRoute *someRoute = new LinearRoute(5);
-    Space *someSpace = someRoute->startSpace;
-//    const auto testColor = *rc::gen::build(
-    //    // List all of the acceptable colors
-    const auto testColor = *rc::gen::element("Red","Blue","Green","Yellow");
-
-    Player *p = new Player(std::string(testColor), someSpace);
-    RC_ASSERT(p->currentSpace == someSpace);
-    RC_ASSERT(p->myColor.compare(testColor) == 0);
-}
-*/
-
 class RandomizedMoveTestFixture : public testing::Test {
 protected:
 //    RandomizedMoveTestFixture() {}
@@ -61,7 +46,7 @@ protected:
         while (!didAdvance) { // this could loop forever.
             for (auto player : myBoard->players) {
                 dieRoll = lowRoll + ( std::rand() % ( highRoll - lowRoll + 1 ) );  // Should generate a random roll between lowRoll and highRoll...
-                std::cerr << player->myColor[0] << dieRoll << ".";
+                // std::cerr << player->myColor[0] << dieRoll << ".";
                 
                 currentRoute = player->currentSpace->myRoute;
                 endSpace = currentRoute->movePlayer(player,dieRoll); // This should reset the player's position
@@ -70,7 +55,7 @@ protected:
                 
                 if (didAdvance || didWin)
                 {
-                    std::cerr << player->myColor[0] << "(" << turnCount << ")\n";
+                    // std::cerr << player->myColor[0] << "(" << turnCount << ")\n";
                     return player;
                 }
             }
@@ -111,17 +96,76 @@ TEST_F(RandomizedMoveTestFixture, checkFixtureInitialization) {
     ASSERT_EQ(myBoard->players.size(), 4);
 }
 
+/*
+RC_GTEST_FIXTURE_PROP(RandomizedMoveTestFixture, firstTwoMovesPairs,()) {
+    // Randomize a pair of player/die rolls to
 
-RC_GTEST_FIXTURE_PROP(RandomizedMoveTestFixture, firstMoves,()) {
-// Properties to vary:
-    //const auto playerNumber = *rc::gen::inRange(0,3).as("Player index");
-    const auto dieRoll = *rc::gen::inRange(1,6).as("Die roll for moves");
-    //const auto playerColor = *rc::gen::elementOf(playerOrder).as("Player color being moved");
+    const auto turnPair = *rc::gen::pair(rc::gen::pair(rc::gen::elementOf(myBoard->players).as("Player for 1st move"),
+                                     rc::gen::inRange(1,6).as("Paired 1st die roll")),
+                       rc::gen::pair(rc::gen::elementOf(myBoard->players).as("Player for 2nd move"),
+                                     rc::gen::inRange(1,6).as("Paired 2nd die roll")));
+
+    std::pair<Player*,int> pRollPair = turnPair.first;
+
+    int dieRoll = pRollPair.second;
+    Player *p = pRollPair.first;
+
+        Route *currentRoute = p->currentSpace->myRoute;
+        Space *endSpace = currentRoute->movePlayer(p,dieRoll); // This should reset the current space, etc.
+
+        RC_ASSERT(currentRoute->path[dieRoll-1]== p->currentSpace);
+        std::set<Player*> playersOnEndSpace = endSpace->currentPlayers;
+        RC_ASSERT(playersOnEndSpace.find(p) != playersOnEndSpace.end() );
+        RC_ASSERT(playersOnEndSpace.count(p) == 1);
     
+    // Note: This should fail when the second player actually advances
+    pRollPair = turnPair.second;
+    dieRoll = pRollPair.second;
+    p = pRollPair.first;
+
+    currentRoute = p->currentSpace->myRoute;
+    endSpace = currentRoute->movePlayer(p,dieRoll); // This should reset the current space, etc.
+
+    RC_ASSERT(currentRoute->path[dieRoll-1]== p->currentSpace);
+    playersOnEndSpace = endSpace->currentPlayers;
+    RC_ASSERT(playersOnEndSpace.find(p) != playersOnEndSpace.end() );
+    RC_ASSERT(playersOnEndSpace.count(p) == 1);
+}
+*/
+
+RC_GTEST_FIXTURE_PROP(RandomizedMoveTestFixture, firstMovesPairs,()) {
+    // Properties to vary:
+    const auto pair = *rc::gen::pair(rc::gen::elementOf(myBoard->players).as("Player for move"),
+                                     rc::gen::inRange(1,6).as("Paired die roll"));
+    int dieRoll = pair.second;
+    Player *p = pair.first;
+
+        RC_ASSERT(p->currentSpace == myBoard->route1->startSpace);
+        std::set<Player*> playersOnStartSpace = myBoard->route1->startSpace->currentPlayers;
+        RC_ASSERT(playersOnStartSpace.find(p) != playersOnStartSpace.end() );
+        RC_ASSERT(playersOnStartSpace.count(p) == 1);
+
+        Route *currentRoute = p->currentSpace->myRoute;
+        Space *endSpace = currentRoute->movePlayer(p,dieRoll); // This should reset the current space, etc.
+
+        RC_ASSERT(currentRoute->path[dieRoll-1]== p->currentSpace);
+        std::set<Player*> playersOnEndSpace = endSpace->currentPlayers;
+        RC_ASSERT(playersOnEndSpace.find(p) != playersOnEndSpace.end() );
+        RC_ASSERT(playersOnEndSpace.count(p) == 1);
+
+        std::set<Player*> remainingPlayersOnStartSpace = myBoard->route1->startSpace->currentPlayers;
+            // RC_ASSERT(remainingPlayersOnStartSpace.count(p) == 0);
+    }
+
+RC_GTEST_FIXTURE_PROP(RandomizedMoveTestFixture, firstMoves,()) {  //same as pairs...
+// Properties to vary:
+    //const auto playerColor = *rc::gen::elementOf(playerOrder).as("Player color being moved");
     //const auto smallEven = *gen::suchThat(gen::inRange(0, 100), [](int x) { return (x % 2) == 0; });
-        
+    //const auto playerNumber = *rc::gen::inRange(0,3).as("Player index");
+    
+    const auto dieRoll = *rc::gen::inRange(1,6).as("Die roll for moves");
     const auto p = *rc::gen::elementOf(myBoard->players);
-    //Player *p = myBoard->players[playerNumber];
+    
     RC_ASSERT(p->currentSpace == myBoard->route1->startSpace);
     std::set<Player*> playersOnStartSpace = myBoard->route1->startSpace->currentPlayers;
     RC_ASSERT(playersOnStartSpace.find(p) != playersOnStartSpace.end() );
@@ -139,23 +183,3 @@ RC_GTEST_FIXTURE_PROP(RandomizedMoveTestFixture, firstMoves,()) {
         // RC_ASSERT(remainingPlayersOnStartSpace.count(p) == 0);
 }
 
-
-/* shows RC Failures */
-/*
-RC_GTEST_FIXTURE_PROP(RandomizedMoveTestFixture, advancePlayerWdieRollFunction,()) {
-// Properties to vary:
-    const auto dieRoll = *rc::gen::inRange(1,6).as("Die roll for moves");
-    const auto playerColor = *rc::gen::elementOf(playerOrder).as("Player color being moved");
-        
-    const auto p = *rc::gen::elementOf(myBoard->players);
-    Route *initialRoute = p->currentSpace->myRoute;
-
-    if (p->myColor.compare(playerColor) == 0) { //RC_PRE() probably more useful
-        bool wonGame = myBoard->dieRoll(playerColor,dieRoll); //Randomly move any player
-        
-        RC_ASSERT(p->currentSpace == myBoard->route1->startSpace); // should fail
-        Route *currentRoute = p->currentSpace->myRoute;
-        RC_ASSERT(currentRoute != initialRoute); // should eventually fail...
-    }
-}
-*/
