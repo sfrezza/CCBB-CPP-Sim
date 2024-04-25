@@ -42,9 +42,11 @@ protected:
         bool didAdvance = false;
         bool didWin = false;
         int turnCount = 0;
+        Player *lastPlayer;
         
         while (!didAdvance) { // this could loop forever.
-            for (auto player : myBoard->players) {
+            for (Player *player : myBoard->players) {
+                lastPlayer = player;
                 dieRoll = lowRoll + ( std::rand() % ( highRoll - lowRoll + 1 ) );  // Should generate a random roll between lowRoll and highRoll...
                 // std::cerr << player->myColor[0] << dieRoll << ".";
                 
@@ -61,8 +63,13 @@ protected:
             }
             turnCount++;
             // Needs another way to stop if players never advance...
+            if (turnCount > 100) {
+                std::cerr << "Quitting with " << lastPlayer->myColor[0] << "(" << turnCount << ")\n";
+                return 0;
+            }
             
         }
+        std::cerr << "Failed exit conditions for advanceOnePlayer(). \n";
         return 0; // Very Bad...
     }
 
@@ -78,22 +85,24 @@ RC_GTEST_FIXTURE_PROP(RandomizedMoveTestFixture, advanceASinglePlayer,()) {
     const auto p = *rc::gen::elementOf(myBoard->players);
     CircularRoute *startingRoute = (CircularRoute *)(p->currentSpace->myRoute);
     Player *justAdvanced = advanceOnePlayer();
-    std::cerr << justAdvanced->myColor << " advanced";
+    // std::cerr << justAdvanced->myColor << " advanced";
     
     if (p==justAdvanced) { // If they advanced, then they are correctly on a different route
         RC_ASSERT(startingRoute != justAdvanced->currentSpace->myRoute);
         RC_ASSERT(startingRoute->nextRoute == justAdvanced->currentSpace->myRoute);  // in my dreams of dynamic binding ;)
-        std::cerr << ", correctly. \n";
+        // std::cerr << ", correctly. \n";
     }
     else {
         RC_ASSERT(startingRoute == p->currentSpace->myRoute);
-        std::cerr << " while " << p->myColor << " remained on the route correctly. \n";
+        // std::cerr << " while " << p->myColor << " remained on the route correctly. \n";
     }
 }
 
 
 TEST_F(RandomizedMoveTestFixture, checkFixtureInitialization) {
+    // These only happen once
     ASSERT_EQ(myBoard->players.size(), 4);
+    ASSERT_TRUE(myBoard->players.size() == 4);  // In style of the RC_ASSERT()
 }
 
 /*
@@ -183,3 +192,23 @@ RC_GTEST_FIXTURE_PROP(RandomizedMoveTestFixture, firstMoves,()) {  //same as pai
         // RC_ASSERT(remainingPlayersOnStartSpace.count(p) == 0);
 }
 
+
+//Sample use of generating using the class constructor
+class Person {
+public:
+    std::string firstName;
+    std::string lastName;
+    int age;
+    Person(){};
+    Person(std::string, std::string, int) {};
+};
+
+RC_GTEST_FIXTURE_PROP(RandomizedMoveTestFixture, sample,()) {  //same as pairs...
+    const auto randomlyGeneratedPerson = *rc::gen::build<Person>(
+                       rc::gen::set(&Person::firstName),
+                       rc::gen::set(&Person::lastName),
+                       rc::gen::set(&Person::age, rc::gen::inRange(0, 100)));
+    
+    RC_ASSERT(randomlyGeneratedPerson.age >= 0);
+    //std::cerr << "Aged: " << randomlyGeneratedPerson.age <<" \n";
+}
