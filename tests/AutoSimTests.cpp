@@ -6,6 +6,8 @@
 #include <rapidcheck/gtest.h>
 #include <rapidcheck.h>
 
+using namespace std;
+
 class AutoSimTests : public ::testing::Test {
 protected:
     std::vector<std::string> listOfPlayers;
@@ -87,32 +89,23 @@ RC_GTEST_FIXTURE_PROP(AutoSimTests, invalidNumberOfPlayersConstructor, ()) {
 }
 
 RC_GTEST_FIXTURE_PROP(AutoSimTests, listOfPlayersConstructor, ()) {
-    const auto playerNumbers = *rc::gen::inRange(2, 4);
-    std::vector<std::string> players = generateRandomListOfPLayers(playerNumbers);
-    AutoSim* mySim = new AutoSim(players);
-    RC_ASSERT(mySim->getPlayers().size() == playerNumbers);
+    const auto numberOfPlayers = *rc::gen::inRange(2, 4).as("Player count");
+    //std::vector<std::string> players = generateRandomListOfPlayers(numberOfPlayers);
+    
+    std::vector<std::string> playerColors = *rc::gen::resize(numberOfPlayers, rc::gen::arbitrary<vector<std::string>>() ).as("Player order");
+    AutoSim* mySim = new AutoSim(playerColors);
+    RC_ASSERT(mySim->getPlayers().size() == numberOfPlayers);
 
-    for (int i = 0; i < playerNumbers; i++) {
-        RC_ASSERT(players[i] == mySim->getPlayers()[i]->myColor);
+    for (int i = 0; i < numberOfPlayers; i++) {
+        RC_ASSERT(playerColors[i] == mySim->getPlayers()[i]->myColor);
     }
     //Verify that the board was constructed correctly:
     EXPECT_EQ(mySim->getBoard()->route3->path.size(), 16);
     EXPECT_EQ(mySim->getBoard()->route2->path.size(), 18);
     EXPECT_EQ(mySim->getBoard()->route1->path.size(), 26);
-    ASSERT_EQ(mySim->getBoard()->players.size(), playerNumbers);
+    ASSERT_EQ(mySim->getBoard()->players.size(), numberOfPlayers);
 }
-/*
-RC_GTEST_FIXTURE_PROP(AutoSimTests, invalidListOfPlayersConstructor, ()) {
-    const auto playerNumbers = *rc::gen::inRange(2, 4);
-    std::vector<std::string> players = generateRandomListOfInvalidPLayers(playerNumbers);
-    
-    RC_ASSERT_THROWS([](std::vector<std::string> players) {AutoSim* mySim = new AutoSim(players); }, InvalidPlayerListException);
-    RC_ASSERT_THROWS([]() {AutoSim* mySim = new AutoSim({}); }, InvalidPlayerListException);
 
-    players = generateRandomListOfPLayers(1);
-    // RC_ASSERT_THROWS([](std::vector<std::string> players) {AutoSim* mySim = new AutoSim(players); }, InvalidPlayerListException);
-}
-*/
 
 RC_GTEST_FIXTURE_PROP(AutoSimTests, takeTurns, ()) {
     const auto playerNumbers = *rc::gen::inRange(2, 4);

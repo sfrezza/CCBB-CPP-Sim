@@ -18,14 +18,18 @@ struct TurnTuple {
 
 class AutoSim {
 private: 
-    // Board *myBoard;
-    // std::vector<Player*> myPlayerSequence;
+    Board *myBoard;
+    std::vector<Player*> myPlayerSequence;
+    std::vector<std::string> randomizeFourPlayerColors(int playerCount);
     
 public:
-	AutoSim(int);
+	AutoSim(int playerCount);
 	AutoSim(std::vector<std::string>);
-	std::vector<Player*> getPlayers();
-	Board* getBoard();
-    TurnTuple takeTurn();
+    
+    std::vector<Player*> getPlayers();
+    Board* getBoard();
+    
     Player* nextPlayer();
+    TurnTuple takeTurn();
+
 };

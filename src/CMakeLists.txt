@@ -1,12 +1,14 @@
-file(GLOB SOURCES "*.cpp")
-list(REMOVE_ITEM SOURCES "main.cpp")
+# message(STATUS "main.cpp path: ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 
-add_library(ccbb ${SOURCES})
-# add_executable(
-#     play main.cpp
-# )
+file(GLOB LIB_SOURCES "*.cpp")
+# list(REMOVE_ITEM LIB_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
+
+message(STATUS "LIB_SOURCES list: ${LIB_SOURCES}")
+
+add_library(ccbblib ${LIB_SOURCES})
+add_executable(ccbb ${LIB_SOURCES} main.cpp)
 
 target_link_libraries(
-#  play
-  ccbb
+  ccbblib
 )
+

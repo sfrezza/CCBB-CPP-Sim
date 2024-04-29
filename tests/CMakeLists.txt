@@ -35,7 +35,7 @@ target_include_directories(test_ccbb INTERFACE rapidcheck)
 
 target_link_libraries(test_ccbb
   PRIVATE
-  ccbb
+  ccbblib
   GTest::GTest
   rapidcheck
   rapidcheck_gtest
