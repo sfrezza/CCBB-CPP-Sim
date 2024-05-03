@@ -3,7 +3,7 @@
 file(GLOB LIB_SOURCES "*.cpp")
 # list(REMOVE_ITEM LIB_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 
-message(STATUS "LIB_SOURCES list: ${LIB_SOURCES}")
+# message(STATUS "LIB_SOURCES list: ${LIB_SOURCES}")
 
 add_library(ccbblib ${LIB_SOURCES})
 add_executable(ccbb ${LIB_SOURCES} main.cpp)

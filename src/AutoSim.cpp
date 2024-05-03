@@ -33,17 +33,21 @@ std::vector<std::string> AutoSim::randomizeFourPlayerColors(int playerCount) {
 
 AutoSim::AutoSim(int playerCount)
 {
-    std::cerr << "Called AutoSim( " << playerCount << ")\n";
+    std::cout << "Called AutoSim( " << playerCount << ")\n";
     // Randomize game initialization with 2-4 players in a random order
     if (playerCount <2) playerCount = 2;
     else if (playerCount >4) playerCount = 4;
     
     myBoard = new Board();
     myBoard->initializePlayers(randomizeFourPlayerColors(playerCount));
+    myPlayerSequence = myBoard->players;
 }
 
-AutoSim::AutoSim(std::vector<std::string>)
+AutoSim::AutoSim(std::vector<std::string> playerColorOrder)
 {
+    std::cout << "Called AutoSim( playerColorOrder )\n";
+    myBoard = new Board();
+    myBoard->initializePlayers(playerColorOrder);
 }
 
 std::vector<Player*> AutoSim::getPlayers()

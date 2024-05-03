@@ -24,7 +24,7 @@ private:
     
 public:
 	AutoSim(int playerCount);
-	AutoSim(std::vector<std::string>);
+	AutoSim(std::vector<std::string> playerColorOrder);
     
     std::vector<Player*> getPlayers();
     Board* getBoard();

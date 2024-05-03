@@ -24,7 +24,7 @@ protected:
     void TearDown() override {
     }
 
-    std::vector<std::string> generateRandomListOfPLayers(int numberOfPlayers) {
+    std::vector<std::string> generateRandomListOfPlayers(int numberOfPlayers) {
         std::vector<std::string> allPlayers = { "Red", "Yellow", "Green", "Blue" };
         for (int i = 0; i < numberOfPlayers; i++) {
             const auto player = *rc::gen::elementOf(allPlayers);
@@ -36,7 +36,7 @@ protected:
     }
 
     std::vector<std::string> generateRandomListOfInvalidPLayers(int numberOfPlayers) {
-        std::vector<std::string> listOfPlayers = generateRandomListOfPLayers(numberOfPlayers);
+        std::vector<std::string> listOfPlayers = generateRandomListOfPlayers(numberOfPlayers);
         const auto hasDuplicateColor = *rc::gen::arbitrary<bool>();
         if (hasDuplicateColor) {
             listOfPlayers.pop_back();
@@ -90,9 +90,9 @@ RC_GTEST_FIXTURE_PROP(AutoSimTests, invalidNumberOfPlayersConstructor, ()) {
 
 RC_GTEST_FIXTURE_PROP(AutoSimTests, listOfPlayersConstructor, ()) {
     const auto numberOfPlayers = *rc::gen::inRange(2, 4).as("Player count");
-    //std::vector<std::string> players = generateRandomListOfPlayers(numberOfPlayers);
+    std::vector<std::string> playerColors = generateRandomListOfPlayers(numberOfPlayers);
     
-    std::vector<std::string> playerColors = *rc::gen::resize(numberOfPlayers, rc::gen::arbitrary<vector<std::string>>() ).as("Player order");
+    // std::vector<std::string> playerColors = *rc::gen::resize(numberOfPlayers, rc::gen::arbitrary<vector<std::string>>() ).as("Player color order");  // This can result in a null set of strings...
     AutoSim* mySim = new AutoSim(playerColors);
     RC_ASSERT(mySim->getPlayers().size() == numberOfPlayers);
 
@@ -109,7 +109,7 @@ RC_GTEST_FIXTURE_PROP(AutoSimTests, listOfPlayersConstructor, ()) {
 
 RC_GTEST_FIXTURE_PROP(AutoSimTests, takeTurns, ()) {
     const auto playerNumbers = *rc::gen::inRange(2, 4);
-    std::vector<std::string> players = generateRandomListOfPLayers(playerNumbers);
+    std::vector<std::string> players = generateRandomListOfPlayers(playerNumbers);
     AutoSim* mySim = new AutoSim(players);
     const auto turnCount = *rc::gen::inRange(playerNumbers, 2 * playerNumbers);
     //RC_ASSERT(mySim->getPlayers()[0] == mySim->nextPlayer());                 // Access Violation

@@ -9,6 +9,8 @@
 #include "Route.hpp"
 #include "Space.hpp"
 
+#include <iostream>
+
 LinearRoute::LinearRoute(int length) : Route() {
     endSpace = new Space("End");
     for (int index=0; index<length; index++) {
@@ -20,14 +22,19 @@ LinearRoute::LinearRoute(int length) : Route() {
 }
 
 Space* LinearRoute::movePlayer(Player *player, int noSpaces) {
-    Route *parent = (Route*) this;
-    SpaceTuple spaceTuple = parent->startPlayerMove(player, 0); // Not sure why the cast is required...
+    SpaceTuple spaceTuple = Route::startPlayerMove(player, 0); // C++ism: Not sure why the cast is required...
     int newIndex = spaceTuple.index + noSpaces;
+    // std::cout << "(" <<newIndex << ").";
     Space *movementEndSpace = spaceTuple.space;
         
     if (newIndex > path.size()) { // Handle the 'no movement' part of linear movement
         newIndex = spaceTuple.index; // No movement
-        movementEndSpace = path[newIndex]->endMovementOn(player);
+        if (newIndex == -1) { // true if player is on start space;
+            movementEndSpace = startSpace->endMovementOn(player);
+        }
+        else { // normal case
+            movementEndSpace = path[newIndex]->endMovementOn(player);
+        }
     }
  
     if (newIndex < path.size()) { // Normal Move
